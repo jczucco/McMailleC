@@ -6446,7 +6446,7 @@ C using the intrinsic function SECNDS(X) which returns the
 C  (time in seconds since midnight - X) 
 C
 C      USE PORTLIB
-      USE IFPORT
+!      USE IFPORT   ! Disabled by Zucco
       X=0.
       ISEED=INT(SECNDS(X)*100.)+1
 *
