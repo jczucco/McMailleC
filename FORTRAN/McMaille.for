@@ -7671,7 +7671,7 @@ C
 C
 C    Checks if the 'K' keystroke has been pressed
 C
-      USE DFLIB
+!      USE DFLIB   ! disabled library by Zucco
       LOGICAL(4) PRESSED / .FALSE. /
       LOGICAL(4) PRESSEDK
       CHARACTER(1) KEY
