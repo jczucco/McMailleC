@@ -1,4 +1,5 @@
 all:
+	gcc -Wall kbhit.c -o kbhit
 	gfortran McMaille.for
 
 apt:
