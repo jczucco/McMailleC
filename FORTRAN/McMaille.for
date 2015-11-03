@@ -76,12 +76,12 @@
 C
       USE OMP_LIB
 C
-	CHARACTER*79 BUFFER
+      CHARACTER*79 BUFFER
       CHARACTER*80 NAM
       CHARACTER*80 FILE
       CHARACTER*80 TEMPO
-	CHARACTER*1 FEND,BL
-	CHARACTER*11 MORE
+      CHARACTER*1 FEND,BL
+      CHARACTER*11 MORE
       CHARACTER*12 INDXPROG
       CHARACTER*7 DATENOW
       CHARACTER*8 TIMENOW
@@ -96,7 +96,7 @@ C
       DIMENSION NSYS(6),PSTARTB(6),DELTA(3),PSTART(3)
       DIMENSION CELPRE(6),CELOLD(6),W1(N_HKL),FM20(N_HKL),FF20(N_HKL)
       DIMENSION BPAR(6),CEL(6,N_HKL),RP(N_HKL),VGC(N_HKL),D(N_HKL)
-	DIMENSION IFI(N_HKL),TEXT(20),LL(N_HKL),QO(N_HKL),IB(N_HKL)
+      DIMENSION IFI(N_HKL),TEXT(20),LL(N_HKL),QO(N_HKL),IB(N_HKL)
       DIMENSION AFI(8),BB(8),KM(N_HKL),IHKL(3,N_HKL),TH3(N_HKL)
       DIMENSION PMI(6),PMA(6),NSOL(N_HKL),CNCALC(N_HKL),XFOM(N_HKL)
       DIMENSION DELTCT(3),ASTARTT(3),IMN(10),IM(10)
@@ -185,10 +185,10 @@ C
       IF(.NOT.QEX) GO TO 7
       CALL FILEDEL(20,TEMPO)
 7     CALL OPEN_WRITE1(20,TEMPO)
-	WRITE(BUFFER,*)'McMaille version ',VERSION
-	CALL PROGRESSVIEW (BUFFER)
-	WRITE(BUFFER,*)'Data file : ',FILE(1:LFILE)
-	CALL PROGRESSVIEW (BUFFER)
+      WRITE(BUFFER,*)'McMaille version ',VERSION
+      CALL PROGRESSVIEW (BUFFER)
+      WRITE(BUFFER,*)'Data file : ',FILE(1:LFILE)
+      CALL PROGRESSVIEW (BUFFER)
       WRITE (20,3000) VERSION,FILE(1:LFILE)
       WRITE(20,*)
       WRITE(20,*)'  Number of Processors :',IPROCS
@@ -303,10 +303,10 @@ C
       IF(NBLACK.EQ.1)WRITE(20,*)' Black box Monte Carlo + grid search '
       WRITE(20,*)'====================================================
      1==========================='
-	WRITE(20,*)
+      WRITE(20,*)
       WRITE(20,10)W
 10    FORMAT(' Width of the columnar profile shape, W  = ',F9.4) 
-	WRITE(20,*)
+      WRITE(20,*)
       WRITE(20,331)NIND
 331   FORMAT(' Max non-indexed reflections, NIND  = ',I4) 
 C
@@ -331,7 +331,7 @@ C
       READ(LCA,*,ERR=3504)PMIN,PMAX,VMIN,VMAX,RMI,RMAX,RMAXREF
       ENDIF
       IF(PMIN.LT.0.)READ(LCA,*,ERR=3504)(PMI(I),PMA(I),I=1,6)
-	WRITE(20,*)
+      WRITE(20,*)
       IF(PMIN.GT.0.)THEN
 C	WRITE(20,*)' Min/Max a,b,c, V ',PMIN,PMAX,VMIN,VMAX
       DO 30 I=1,3
@@ -342,12 +342,12 @@ C	WRITE(20,*)' Min/Max a,b,c, V ',PMIN,PMAX,VMIN,VMAX
       PMA(J)=120.
 30    CONTINUE
       ELSE
-	WRITE(20,*)' Min/Max a cell parameter ',PMI(1),PMA(1)
-	WRITE(20,*)' Min/Max b cell parameter ',PMI(2),PMA(2)
-	WRITE(20,*)' Min/Max c cell parameter ',PMI(3),PMA(3)
-	WRITE(20,*)' Min/Max alpha cell parameter ',PMI(4),PMA(4)
-	WRITE(20,*)' Min/Max beta  cell parameter ',PMI(5),PMA(5)
-	WRITE(20,*)' Min/Max gamma cell parameter ',PMI(6),PMA(6)
+      WRITE(20,*)' Min/Max a cell parameter ',PMI(1),PMA(1)
+      WRITE(20,*)' Min/Max b cell parameter ',PMI(2),PMA(2)
+      WRITE(20,*)' Min/Max c cell parameter ',PMI(3),PMA(3)
+      WRITE(20,*)' Min/Max alpha cell parameter ',PMI(4),PMA(4)
+      WRITE(20,*)' Min/Max beta  cell parameter ',PMI(5),PMA(5)
+      WRITE(20,*)' Min/Max gamma cell parameter ',PMI(6),PMA(6)
       ENDIF
 C
 C  NR is test for automatic Rmax decrease
@@ -360,8 +360,8 @@ C
 C
 C	WRITE(20,*)
 C	WRITE(20,*)' Min/Max volumes ',VMIN,VMAX
-	WRITE(20,*)
-	WRITE(20,*)' Min/Max Rp, Rmaxref ',RMI,RMAX,RMAXREF
+      WRITE(20,*)
+      WRITE(20,*)' Min/Max Rp, Rmaxref ',RMI,RMAX,RMAXREF
 C
 C.....According to NGRID, read either grid steps
 C                              or Monte Carlo parameters 
@@ -372,8 +372,8 @@ C                              or both
 C      WRITE(28,9665)
 C9665  FORMAT('! Spar, Sang')
 C      WRITE(28,*)'0.02 0.2'
-	WRITE(20,*)
-	WRITE(20,*)' Steps on (a,b,c) and angles ',SPAR,SANG
+      WRITE(20,*)
+      WRITE(20,*)' Steps on (a,b,c) and angles ',SPAR,SANG
       WRITE(28,9666)
 9666  FORMAT('! Ntests, Nruns')
       WRITE(28,*)'-100 20'
@@ -393,8 +393,8 @@ C     SPAR = step on cell parameters
 C     SANG = step on angles
 C
       READ(LCA,*,ERR=3505)SPAR,SANG
-	WRITE(20,*)
-	WRITE(20,*)' Steps on (a,b,c) and angles ',SPAR,SANG
+      WRITE(20,*)
+      WRITE(20,*)' Steps on (a,b,c) and angles ',SPAR,SANG
       IF(NGRID.EQ.2)GO TO 12
       GO TO 13
 12    CONTINUE
@@ -409,25 +409,25 @@ C
       READ (LCA,*,ERR=3506)TIMLIM,NRUNS
       IF(TIMLIM.LT.0.)THEN
       TIMLIM=-TIMLIM
-	WRITE(20,*)
-	WRITE(20,*)' N of runs ',NRUNS
+      WRITE(20,*)
+      WRITE(20,*)' N of runs ',NRUNS
       NTIMELIM(1)=TIMLIM
-	WRITE(20,*)' N of MC events in cubic        ',NTIMELIM(1)
+      WRITE(20,*)' N of MC events in cubic        ',NTIMELIM(1)
       NTIMELIM(2)=NTIMELIM(1)*20.
-	WRITE(20,*)' N of MC events in tetra/hexa   ',NTIMELIM(2)
+      WRITE(20,*)' N of MC events in tetra/hexa   ',NTIMELIM(2)
       NTIMELIM(3)=NTIMELIM(2)
       NTIMELIM(4)=NTIMELIM(3)*20.
-	WRITE(20,*)' N of MC events in orthorhombic ',NTIMELIM(4)
+      WRITE(20,*)' N of MC events in orthorhombic ',NTIMELIM(4)
       NTIMELIM(5)=NTIMELIM(4)*20.
-	WRITE(20,*)' N of MC events in monoclinic   ',NTIMELIM(5)
+      WRITE(20,*)' N of MC events in monoclinic   ',NTIMELIM(5)
       NTIMELIM(6)=NTIMELIM(5)*20.
-	WRITE(20,*)' N of MC events in triclinic    ',NTIMELIM(6)
+      WRITE(20,*)' N of MC events in triclinic    ',NTIMELIM(6)
       ELSE
       DO 8221 I=1,6
       NTIMELIM(I)=TIMLIM
 8221  CONTINUE
-	WRITE(20,*)
-	WRITE(20,*)' N of MC events, N of runs ',TIMLIM,NRUNS
+      WRITE(20,*)
+      WRITE(20,*)' N of MC events, N of runs ',TIMLIM,NRUNS
       ENDIF
 C
 13    CONTINUE
@@ -439,13 +439,13 @@ C
       PRINT *
       PRINT *,'      This is the black box mode, can be long...'
       IF(NOTRIC.EQ.1)THEN
-	PRINT *
+      PRINT *
       PRINT *,'               No triclinic search.'
       ENDIF
       ENDIF
-	PRINT *
-	PRINT *,'  To cancel and save, type K (capital letter) anytime'
-	PRINT *
+      PRINT *
+      PRINT *,'  To cancel and save, type K (capital letter) anytime'
+      PRINT *
 C
 C.....And now, read couples of 2-theta and I values
 C
@@ -553,7 +553,7 @@ C
 25    CONTINUE
 C   DELTAB = zone explored in angstrom around a good cell
 C   DMIN acts as a lower d limit for keeping reflections
-	DELTAB=0.02
+      DELTAB=0.02
 C      DMIN=SLABDA/(2.*SIN(TH2(NHKL)/PI))-DELTAB
       DMIN=D(NHKL)-DELTAB
 C  Dmax values will help to determine max cell parameters
@@ -591,7 +591,7 @@ C
       WRITE(20,*)'   Dmin = ',DMIN
       DMIN=1/DMIN**2
 C   DELTAD = zone explored in 1/100 of degrees around a good cell
-	DELTAD=0.20
+      DELTAD=0.20
 C  IGC = number of retained cells, IGM = max IGC
 C  IREF = code for refining the best cell if it had
 C         not Rp < Rmin
@@ -600,7 +600,7 @@ C        including multiple identical cells
       IGC=0
       IGT=0.
       IREF=0
-	IGM=10000
+      IGM=10000
       IHR=0
       NRUNS2=1
       RPSMALL=1.
@@ -638,14 +638,14 @@ C
 C
 C...  Cell generation by Monte Carlo
 C
-	PRINT *
-	PRINT *,'Monte Carlo search :'
+      PRINT *
+      PRINT *,'Monte Carlo search :'
 C
       IF(NSYS(1).EQ.0)GO TO 200
 C
 C    Cubic case
 C
-	PRINT *,'Cubic:        Rp     a        V     Nind'
+      PRINT *,'Cubic:        Rp     a        V     Nind'
 C
       IFILE=1
       NCYCLES=200.
@@ -666,17 +666,17 @@ C
       PSTART(1)=PMIN
       ENDIF
 C
-	WRITE(20,*)
-	WRITE(20,*)'Cubic Monte Carlo search :'
-	WRITE(20,*)' Max a, V ',PMAX,VMAX
-	WRITE(20,*)
+      WRITE(20,*)
+      WRITE(20,*)'Cubic Monte Carlo search :'
+      WRITE(20,*)' Max a, V ',PMAX,VMAX
+      WRITE(20,*)
 C
       IF(IVERB.EQ.1)THEN
-	WRITE(20,180)NRUN,NTIMELIM(1)
+      WRITE(20,180)NRUN,NTIMELIM(1)
       WRITE(20,*)'====================================================
      1==========================='
-	WRITE(20,*)' Rp  Trial number   a        V    Nind Icod'
-	WRITE(20,*)
+      WRITE(20,*)' Rp  Trial number   a        V    Nind Icod'
+      WRITE(20,*)
       ENDIF
 180   FORMAT('  Results in cubic, run, tests :',I3,F12.0)
 C
@@ -691,7 +691,7 @@ C
 101   READ(35,*)(IHH(KK,I),KK=1,3)
       CLOSE(35)
 C
-	DO 199 NRUN=1,NRUNS
+      DO 199 NRUN=1,NRUNS
 *------------------------------------------------------------------------- 
 *     Initialisation
 *
@@ -699,7 +699,7 @@ C      CALL ESP_INIT(ISEED)
 *
 *-------------------------------------------------------------------------
       RMAX=RMAXREF
-	RMIN=RMAX
+      RMIN=RMAX
 C
 C...  here starts the loop
 C
@@ -747,15 +747,15 @@ C
       GO TO 196
       ENDIF
       IF(NTRIEDB.NE.0.)GO TO 106
-	IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
-	NTRIED=NTRIED-1.
+      IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
+      NTRIED=NTRIED-1.
       NTRIEDT=NTRIEDT+1.
       IF(NTRIEDT.GT.TTMAX)THEN
       NOUT=NOUT+1
       GO TO 196
       ENDIF
-	GO TO 102
-	ENDIF
+      GO TO 102
+      ENDIF
 C
 106   CALL CALCUL1(DIFF,DIFF2)
       IF(NMX.GT.NDAT10)THEN
@@ -781,18 +781,18 @@ C
       LLHKL=LHKL
       RMAX=DIFF
       RMAX2=DIFF2
-	A=CELPRE(1)
-	V2=V1
-	IF(DIFF.LT.RMIN)THEN
-	RMIN=DIFF
-	BPAR(1)=A
-	V3=V1
-	ENDIF
+      A=CELPRE(1)
+      V2=V1
+      IF(DIFF.LT.RMIN)THEN
+      RMIN=DIFF
+      BPAR(1)=A
+      V3=V1
+      ENDIF
 C
 C... "Refine" that cell (by Monte Carlo too...)
 C
       PSTARTB(1)=CELPRE(1)
-	ENDIF
+      ENDIF
       IF(NTRIEDB.LE.NCYCLES)GO TO 103
       NTRIEDB=0.
       IF(RMAX.GE.RMAX0(1))GO TO 117
@@ -836,9 +836,9 @@ C$OMP END CRITICAL(STORE1)
 C
 C... Check for supercell
 C
-	CELPRE(1)=A
-	CELPRE(2)=A
-	CELPRE(3)=A
+      CELPRE(1)=A
+      CELPRE(2)=A
+      CELPRE(3)=A
       DO 140 I=1,3
       DO 140 J=1,3
 140   AL(I,J)=0.0
@@ -849,7 +849,7 @@ C
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       KM(IGC)=LLHKL
       KM2(IGC)=LHKL
-	IFI(IGC)=IFILE
+      IFI(IGC)=IFILE
       NSOL(IGC)=1
       VGC(IGC)=V1
       RP(IGC)=RMAX
@@ -886,26 +886,26 @@ C      IF(INTEREST.GE.1)GO TO 196
       AFI(6)=0
       AFI(7)=0
       AFI(8)=0
-	CELPRE(1)=A
-	CELPRE(2)=A
-	CELPRE(3)=A
+      CELPRE(1)=A
+      CELPRE(2)=A
+      CELPRE(3)=A
       DO 110 I=1,3
       DO 110 J=1,3
 110   AL(I,J)=0.0
 C
 C$OMP CRITICAL(FOUND)
 C
-	IF(RP(IGC).LT.RMI)THEN
-	INTEREST=INTEREST+1
+      IF(RP(IGC).LT.RMI)THEN
+      INTEREST=INTEREST+1
       WRITE(*,1115)RMAX,A,V2,IPEN
       WRITE(20,*)
       WRITE(20,*)'====================================================
      1==========================='
       WRITE(20,*)
-	WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin !'
+      WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin !'
       WRITE(20,*)
       WRITE(*,*)
-	WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin !'
+      WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin !'
       WRITE(*,*)
 C
 C... Refine that cell
@@ -913,7 +913,7 @@ C
       CALL DCELL(CELPRE,AL,V1)
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       CALL CELREF2(INDIC,BB,AFI,LHKL,TH3,IHKL,DDT,DDQ)
-	CNCALC(IGC)=NCALC
+      CNCALC(IGC)=NCALC
       IF(NDAT.GE.20)THEN
       FM20(IGC)=QO(20)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=20./(CNCALC(IGC)*DDT)
@@ -929,7 +929,7 @@ C      PRINT 7000,FM20(IGC)
 C      PRINT 7001,FF20(IGC),DDT,NCALC
 C	PRINT *
       IREF=1
-	GO TO 197
+      GO TO 197
       ELSE
 C
 C  Anyway, calculate the M20 and F20 values
@@ -937,7 +937,7 @@ C
       CALL DCELL(CELPRE,AL,V1)
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       CALL CELREF2(INDIC,BB,AFI,LHKL,TH3,IHKL,DDT,DDQ)
-	CNCALC(IGC)=NCALC
+      CNCALC(IGC)=NCALC
       IF(NDAT.GE.20)THEN
       FM20(IGC)=QO(20)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=20./(CNCALC(IGC)*DDT)
@@ -946,7 +946,7 @@ C
       FM20(IGC)=QO(NDAT)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=PNDAT/(CNCALC(IGC)*DDT)
       ENDIF
-	ENDIF
+      ENDIF
 C
 C Test if cell already found
 C
@@ -1007,8 +1007,8 @@ C
       IF(RMIN.EQ.RMAX)GO TO 198
       IF(IVERB.EQ.1)THEN
       WRITE(20,*)
-	WRITE(20,*)'Best result : a=',BPAR(1),'V=',V3,' Rp=',RMIN
-	WRITE(20,*)
+      WRITE(20,*)'Best result : a=',BPAR(1),'V=',V3,' Rp=',RMIN
+      WRITE(20,*)
       CALL DATN(DATENOW,TIMENOW)
       ENDIF
       RMIN=RMAX
@@ -1026,11 +1026,11 @@ C
       IF(NGRID.EQ.3)IHR=1
 290   CONTINUE
       IF(IHR.EQ.2)NSYS(2)=2
-	IF(NSYS(2).EQ.1)THEN
-	PRINT *,'Hexagonal:    Rp     a       c        V     Nind'
+      IF(NSYS(2).EQ.1)THEN
+      PRINT *,'Hexagonal:    Rp     a       c        V     Nind'
       RPSMALL=1.
       ELSE
-	PRINT *,'Rhombohedral: Rp     a       c        V     Nind'
+      PRINT *,'Rhombohedral: Rp     a       c        V     Nind'
       RPSMALL=1.
       ENDIF
 C
@@ -1062,18 +1062,18 @@ C
       NTIMELIM(2)=VMAX*5.
       ENDIF
 C
-	WRITE(20,*)
-	WRITE(20,*)'Hexagonal/Trigonal/Rhomboedral Monte Carlo search :'
-	WRITE(20,*)' Max(a,c), V ',PMA(1),PMA(3),VMAX
-	WRITE(20,*)
+      WRITE(20,*)
+      WRITE(20,*)'Hexagonal/Trigonal/Rhomboedral Monte Carlo search :'
+      WRITE(20,*)' Max(a,c), V ',PMA(1),PMA(3),VMAX
+      WRITE(20,*)
 C
       IF(IVERB.EQ.1)THEN
-	IF(NSYS(2).EQ.1)WRITE(20,280)NRUN,NTIMELIM(2)
-	IF(NSYS(2).EQ.2)WRITE(20,281)NRUN,NTIMELIM(2)
+      IF(NSYS(2).EQ.1)WRITE(20,280)NRUN,NTIMELIM(2)
+      IF(NSYS(2).EQ.2)WRITE(20,281)NRUN,NTIMELIM(2)
       WRITE(20,*)'====================================================
      1==========================='
-	WRITE(20,*)' Rp  Trial number    a      c        V  Nind Icod'
-	WRITE(20,*)
+      WRITE(20,*)' Rp  Trial number    a      c        V  Nind Icod'
+      WRITE(20,*)
       ENDIF
 280   FORMAT('  Results in hexagonal, run, tests :',I3,F12.0)
 281   FORMAT('  Results in rhombohedral, run, tests :',I3,F12.0)
@@ -1082,9 +1082,9 @@ C     READ hkl Miller indices in hex.hkl
 C
       IF(NSYS(2).EQ.2)GO TO 260
       TEMPO='hex.hkl'
-	GO TO 261
+      GO TO 261
 260   TEMPO='rho.hkl'
-	IFILE=7
+      IFILE=7
 261   CALL OPEN_READ1(35,TEMPO)
       READ(35,*)NHKL0
       IF(NSYS(2).EQ.2)GO TO 262
@@ -1097,7 +1097,7 @@ C
 201   READ(35,*)(IHH(KK,I),KK=1,3)
       CLOSE(35)
 C
-	DO 299 NRUN=1,NRUNS
+      DO 299 NRUN=1,NRUNS
 *------------------------------------------------------------------------- 
 *     Initialisation
 *
@@ -1105,7 +1105,7 @@ C      CALL ESP_INIT(ISEED)
 *
 *-------------------------------------------------------------------------
       RMAX=RMAXREF
-	RMIN=RMAX
+      RMIN=RMAX
 C
 C...  here starts the loop
 C
@@ -1118,7 +1118,7 @@ C
       NTRIEDT=0
       NOUT=0
       CELPRE(1)=PSTART(1)+2.*DELTA(1)*RANDI(ISEED)
-	CELPRE(2)=CELPRE(1)
+      CELPRE(2)=CELPRE(1)
       CELPRE(3)=PSTART(3)+2.*DELTA(3)*RANDI(ISEED)
       CELOLD(1)=CELPRE(1)
       CELOLD(3)=CELPRE(3)
@@ -1165,15 +1165,15 @@ C
       GO TO 296
       ENDIF
       IF(NTRIEDB.NE.0.)GO TO 206
-	IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
-	NTRIED=NTRIED-1.
+      IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
+      NTRIED=NTRIED-1.
       NTRIEDT=NTRIEDT+1.
       IF(NTRIEDT.GT.TTMAX)THEN
       NOUT=NOUT+1
       GO TO 296
       ENDIF
-	GO TO 202
-	ENDIF
+      GO TO 202
+      ENDIF
 C
 206   CALL CALCUL1(DIFF,DIFF2)
       IF(NMX.GT.NDAT10)THEN
@@ -1203,20 +1203,20 @@ C
       RMAX=DIFF
       RMAX2=DIFF2
       A=CELPRE(1)
-	C=CELPRE(3)
-	V2=V1
-	IF(DIFF.LT.RMIN)THEN
-	RMIN=DIFF
-	BPAR(1)=A
+      C=CELPRE(3)
+      V2=V1
+      IF(DIFF.LT.RMIN)THEN
+      RMIN=DIFF
+      BPAR(1)=A
       BPAR(3)=C
-	V3=V1
-	ENDIF
+      V3=V1
+      ENDIF
 C
 C... "Refine" that cell (by Monte Carlo too...)
 C
       PSTARTB(1)=CELPRE(1)
       PSTARTB(3)=CELPRE(3)
-	ENDIF
+      ENDIF
       IF(NTRIEDB.LE.NCYCLES)GO TO 203
       RGLOB=0.5
       NGLOB=NDAT2
@@ -1265,9 +1265,9 @@ C$OMP END CRITICAL(STORE1)
 C
 C... Check for supercell
 C
-	CELPRE(1)=A
-	CELPRE(2)=A
-	CELPRE(3)=C
+      CELPRE(1)=A
+      CELPRE(2)=A
+      CELPRE(3)=C
       DO 240 I=1,3
       DO 240 J=1,3
 240   AL(I,J)=0.0
@@ -1278,7 +1278,7 @@ C
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       KM(IGC)=LLHKL
       KM2(IGC)=LHKL
-	IFI(IGC)=IFILE
+      IFI(IGC)=IFILE
       NSOL(IGC)=1
       VGC(IGC)=V1
       RP(IGC)=RMAX
@@ -1315,32 +1315,32 @@ C      IF(INTEREST.GE.1)GO TO 296
       AFI(6)=0
       AFI(7)=0
       AFI(8)=0
-	CELPRE(1)=A
-	CELPRE(2)=A
-	CELPRE(3)=C
+      CELPRE(1)=A
+      CELPRE(2)=A
+      CELPRE(3)=C
       DO 210 I=1,3
       DO 210 J=1,3
 210   AL(I,J)=0.0
 C
 C$OMP CRITICAL(FOUND)
 C
-	IF(RP(IGC).LT.RMI)THEN
+      IF(RP(IGC).LT.RMI)THEN
       INTEREST=INTEREST+1
       WRITE(*,1215)RMAX,A,C,V2,IPEN
       WRITE(20,*)
       WRITE(20,*)'====================================================
      1==========================='
       WRITE(20,*)
-	WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
       WRITE(*,*)
-	WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
 C
 C... Refine that cell
 C
       CALL DCELL(CELPRE,AL,V1)
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       CALL CELREF2(INDIC,BB,AFI,LHKL,TH3,IHKL,DDT,DDQ)
-	CNCALC(IGC)=NCALC
+      CNCALC(IGC)=NCALC
       IF(NDAT.GE.20)THEN
       FM20(IGC)=QO(20)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=20./(CNCALC(IGC)*DDT)
@@ -1356,7 +1356,7 @@ C      PRINT 7000,FM20(IGC)
 C      PRINT 7001,FF20(IGC),DDT,NCALC
 C	PRINT *
       IREF=1
-	GO TO 297
+      GO TO 297
       ELSE
 C
 C  Anyway, calculate the M20 and F20 values
@@ -1364,7 +1364,7 @@ C
       CALL DCELL(CELPRE,AL,V1)
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       CALL CELREF2(INDIC,BB,AFI,LHKL,TH3,IHKL,DDT,DDQ)
-	CNCALC(IGC)=NCALC
+      CNCALC(IGC)=NCALC
       IF(NDAT.GE.20)THEN
       FM20(IGC)=QO(20)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=20./(CNCALC(IGC)*DDT)
@@ -1373,7 +1373,7 @@ C
       FM20(IGC)=QO(NDAT)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=PNDAT/(CNCALC(IGC)*DDT)
       ENDIF
-	ENDIF
+      ENDIF
 C
 C Test if cell already found
 C
@@ -1435,9 +1435,9 @@ C
       IF(RMIN.EQ.RMAX)GO TO 298
       IF(IVERB.EQ.1)THEN
       WRITE(20,*)
-	WRITE(20,*)'Best result : a = ',BPAR(1),' Rp = ',RMIN
-	WRITE(20,*)'Best result : c = ',BPAR(3),'V = ',V3
-	WRITE(20,*)
+      WRITE(20,*)'Best result : a = ',BPAR(1),' Rp = ',RMIN
+      WRITE(20,*)'Best result : c = ',BPAR(3),'V = ',V3
+      WRITE(20,*)
       CALL DATN(DATENOW,TIMENOW)
       ENDIF
       RMIN=RMAX
@@ -1456,7 +1456,7 @@ C    Tetragonal case
 C
 C
       RPSMALL=1.
-	PRINT *,'Tetragonal:   Rp     a       c        V     Nind'
+      PRINT *,'Tetragonal:   Rp     a       c        V     Nind'
 C
       IFILE=3
       NCYCLES=500.
@@ -1484,17 +1484,17 @@ C
       NTIMELIM(3)=VMAX*5.
       ENDIF
 C
-	WRITE(20,*)
-	WRITE(20,*)'Tetragonal Monte Carlo search :'
-	WRITE(20,*)' Max(a,c), V ',PMA(1),PMA(3),VMAX
-	WRITE(20,*)
+      WRITE(20,*)
+      WRITE(20,*)'Tetragonal Monte Carlo search :'
+      WRITE(20,*)' Max(a,c), V ',PMA(1),PMA(3),VMAX
+      WRITE(20,*)
 C
       IF(IVERB.EQ.1)THEN
-	WRITE(20,380)NRUN,NTIMELIM(3)
+      WRITE(20,380)NRUN,NTIMELIM(3)
       WRITE(20,*)'====================================================
      1==========================='
-	WRITE(20,*)' Rp  Trial number    a      c        V  Nind Icod'
-	WRITE(20,*)
+      WRITE(20,*)' Rp  Trial number    a      c        V  Nind Icod'
+      WRITE(20,*)
       ENDIF
 380   FORMAT('  Results in tetragonal, run, tests :',I3,F12.0)
 C
@@ -1509,7 +1509,7 @@ C
 301   READ(35,*)(IHH(KK,I),KK=1,3)
       CLOSE(35)
 C
-	DO 399 NRUN=1,NRUNS
+      DO 399 NRUN=1,NRUNS
 *------------------------------------------------------------------------- 
 *     Initialisation
 *
@@ -1517,7 +1517,7 @@ C      CALL ESP_INIT(ISEED)
 *
 *-------------------------------------------------------------------------
       RMAX=RMAXREF
-	RMIN=RMAX
+      RMIN=RMAX
 C
 C...  here starts the loop
 C
@@ -1530,7 +1530,7 @@ C
       NTRIEDT=0.
       NOUT=0
       CELPRE(1)=PSTART(1)+2.*DELTA(1)*RANDI(ISEED)
-	CELPRE(2)=CELPRE(1)
+      CELPRE(2)=CELPRE(1)
       CELPRE(3)=PSTART(3)+2.*DELTA(3)*RANDI(ISEED)
       CELOLD(1)=CELPRE(1)
       CELOLD(3)=CELPRE(3)
@@ -1577,15 +1577,15 @@ C
       GO TO 396
       ENDIF
       IF(NTRIEDB.NE.0.)GO TO 306
-	IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
-	NTRIED=NTRIED-1.
+      IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
+      NTRIED=NTRIED-1.
       NTRIEDT=NTRIEDT+1.
       IF(NTRIEDT.GT.TTMAX)THEN
       NOUT=NOUT+1
       GO TO 396
       ENDIF
-	GO TO 302
-	ENDIF
+      GO TO 302
+      ENDIF
 C
 306   CALL CALCUL1(DIFF,DIFF2)
       IF(NMX.GT.NDAT10)THEN
@@ -1615,20 +1615,20 @@ C
       RMAX=DIFF
       RMAX2=DIFF2
       A=CELPRE(1)
-	C=CELPRE(3)
-	V2=V1
-	IF(DIFF.LT.RMIN)THEN
-	RMIN=DIFF
-	BPAR(1)=A
+      C=CELPRE(3)
+      V2=V1
+      IF(DIFF.LT.RMIN)THEN
+      RMIN=DIFF
+      BPAR(1)=A
       BPAR(3)=C
-	V3=V1
-	ENDIF
+      V3=V1
+      ENDIF
 C
 C... "Refine" that cell (by Monte Carlo too...)
 C
       PSTARTB(1)=CELPRE(1)
       PSTARTB(3)=CELPRE(3)
-	ENDIF
+      ENDIF
       IF(NTRIEDB.LE.NCYCLES)GO TO 303
       RGLOB=0.5
       NGLOB=NDAT2
@@ -1677,9 +1677,9 @@ C$OMP END CRITICAL(STORE1)
 C
 C... Check for supercell
 C
-	CELPRE(1)=A
-	CELPRE(2)=A
-	CELPRE(3)=C
+      CELPRE(1)=A
+      CELPRE(2)=A
+      CELPRE(3)=C
       DO 340 I=1,3
       DO 340 J=1,3
 340   AL(I,J)=0.0
@@ -1727,32 +1727,32 @@ C      IF(INTEREST.GE.1)GO TO 396
       AFI(6)=0
       AFI(7)=0
       AFI(8)=0
-	CELPRE(1)=A
-	CELPRE(2)=A
-	CELPRE(3)=C
+      CELPRE(1)=A
+      CELPRE(2)=A
+      CELPRE(3)=C
       DO 310 I=1,3
       DO 310 J=1,3
 310   AL(I,J)=0.0
 C
 C$OMP CRITICAL(FOUND)
 C
-	IF(RP(IGC).LT.RMI)THEN
+      IF(RP(IGC).LT.RMI)THEN
       INTEREST=INTEREST+1
       WRITE(*,1215)RMAX,A,C,V2,IPEN
       WRITE(20,*)
       WRITE(20,*)'====================================================
      1==========================='
       WRITE(20,*)
-	WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
       WRITE(*,*)
-	WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
 C
 C... Refine that cell
 C
       CALL DCELL(CELPRE,AL,V1)
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       CALL CELREF2(INDIC,BB,AFI,LHKL,TH3,IHKL,DDT,DDQ)
-	CNCALC(IGC)=NCALC
+      CNCALC(IGC)=NCALC
       IF(NDAT.GE.20)THEN
       FM20(IGC)=QO(20)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=20./(CNCALC(IGC)*DDT)
@@ -1768,7 +1768,7 @@ C      PRINT 7000,FM20(IGC)
 C      PRINT 7001,FF20(IGC),DDT,NCALC
 C	PRINT *
       IREF=1
-	GO TO 397
+      GO TO 397
       ELSE
 C
 C  Anyway, calculate the M20 and F20 values
@@ -1776,7 +1776,7 @@ C
       CALL DCELL(CELPRE,AL,V1)
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       CALL CELREF2(INDIC,BB,AFI,LHKL,TH3,IHKL,DDT,DDQ)
-	CNCALC(IGC)=NCALC
+      CNCALC(IGC)=NCALC
       IF(NDAT.GE.20)THEN
       FM20(IGC)=QO(20)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=20./(CNCALC(IGC)*DDT)
@@ -1785,7 +1785,7 @@ C
       FM20(IGC)=QO(NDAT)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=PNDAT/(CNCALC(IGC)*DDT)
       ENDIF
-	ENDIF
+      ENDIF
 C
 C Test if cell already found
 C
@@ -1848,9 +1848,9 @@ C
       IF(RMIN.EQ.RMAX)GO TO 398
       IF(IVERB.EQ.1)THEN
       WRITE(20,*)
-	WRITE(20,*)'Best result : a = ',BPAR(1),' Rp = ',RMIN
-	WRITE(20,*)'Best result : c = ',BPAR(3),'V = ',V3
-	WRITE(20,*)
+      WRITE(20,*)'Best result : a = ',BPAR(1),' Rp = ',RMIN
+      WRITE(20,*)'Best result : c = ',BPAR(3),'V = ',V3
+      WRITE(20,*)
       CALL DATN(DATENOW,TIMENOW)
       ENDIF
       RMIN=RMAX
@@ -1867,7 +1867,7 @@ C    Orthorhombic case
 C
 C
       RPSMALL=1.
-	PRINT *,'Orthorhombic: Rp     a       b       c        V     Nind'
+      PRINT *,'Orthorhombic: Rp     a       b       c        V     Nind'
       IFILE=4
       NCYCLES=1000.
       CY=NCYCLES*1.1
@@ -1883,9 +1883,9 @@ C
       PMA(1)=DMAX1*2.1
       PMA(2)=DMAX2*2.1
       PMA(3)=DMAX3*2.1
-	IF(PMA(1).GT.PMAX)PMA(1)=PMAX
-	IF(PMA(2).GT.PMAX)PMA(2)=PMAX
-	IF(PMA(3).GT.PMAX)PMA(3)=PMAX
+      IF(PMA(1).GT.PMAX)PMA(1)=PMAX
+      IF(PMA(2).GT.PMAX)PMA(2)=PMAX
+      IF(PMA(3).GT.PMAX)PMA(3)=PMAX
       VORTH=PMA(1)*PMA(2)*PMA(3)
       IF(VORTH.GT.3000.)VORTH=3000.
       VMAX=VORTH
@@ -1895,17 +1895,17 @@ C
 423   PSTART(I)=PMI(I)
       ENDIF
 C
-	WRITE(20,*)
-	WRITE(20,*)'Orthorhombic Monte Carlo search :'
+      WRITE(20,*)
+      WRITE(20,*)'Orthorhombic Monte Carlo search :'
       WRITE(20,*)' Max(a,b,c), V ',PMA(1),PMA(2),PMA(3),VMAX
-	WRITE(20,*)
+      WRITE(20,*)
 C
       IF(IVERB.EQ.1)THEN
-	WRITE(20,480)NRUN,NTIMELIM(4)
+      WRITE(20,480)NRUN,NTIMELIM(4)
       WRITE(20,*)'====================================================
      1==========================='
-	WRITE(20,*)' Rp  Trial number    a   b   c       V  Nind icod'
-	WRITE(20,*)
+      WRITE(20,*)' Rp  Trial number    a   b   c       V  Nind icod'
+      WRITE(20,*)
       ENDIF
 480   FORMAT('  Results in orthorhombic, run, tests :',I3,F12.0)
 C
@@ -1920,7 +1920,7 @@ C
 401   READ(35,*)(IHH(KK,I),KK=1,3)
       CLOSE(35)
 C
-	DO 499 NRUN2=1,NRUNS2
+      DO 499 NRUN2=1,NRUNS2
 C
       IF(NGRID.EQ.3)THEN
       IF(NRUN2.EQ.1)THEN
@@ -1966,7 +1966,7 @@ C
       ENDIF
       ENDIF
 C
-	DO 499 NRUN=1,NRUNS
+      DO 499 NRUN=1,NRUNS
 *------------------------------------------------------------------------- 
 *     Initialisation
 *
@@ -1974,7 +1974,7 @@ C      CALL ESP_INIT(ISEED)
 *
 *-------------------------------------------------------------------------
       RMAX=RMAXREF
-	RMIN=RMAX
+      RMIN=RMAX
 C
 C...  here starts the loop
 C
@@ -2038,15 +2038,15 @@ C
       GO TO 496
       ENDIF
       IF(NTRIEDB.NE.0.)GO TO 406
-	IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
-	NTRIED=NTRIED-1.
+      IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
+      NTRIED=NTRIED-1.
       NTRIEDT=NTRIEDT+1.
       IF(NTRIEDT.GT.TTMAX)THEN
       NOUT=NOUT+1
       GO TO 496
       ENDIF
-	GO TO 402
-	ENDIF
+      GO TO 402
+      ENDIF
 C
 406   CALL CALCUL1(DIFF,DIFF2)
       IF(NMX.GT.NDAT10)THEN
@@ -2076,23 +2076,23 @@ C
       RMAX=DIFF
       RMAX2=DIFF2
       A=CELPRE(1)
-	B=CELPRE(2)
-	C=CELPRE(3)
-	V2=V1
-	IF(DIFF.LT.RMIN)THEN
-	RMIN=DIFF
-	BPAR(1)=A
-	BPAR(2)=B
+      B=CELPRE(2)
+      C=CELPRE(3)
+      V2=V1
+      IF(DIFF.LT.RMIN)THEN
+      RMIN=DIFF
+      BPAR(1)=A
+      BPAR(2)=B
       BPAR(3)=C
-	V3=V1
-	ENDIF
+      V3=V1
+      ENDIF
 C
 C... "Refine" that cell (by Monte Carlo too...)
 C
       PSTARTB(1)=CELPRE(1)
       PSTARTB(2)=CELPRE(2)
       PSTARTB(3)=CELPRE(3)
-	ENDIF
+      ENDIF
       IF(NTRIEDB.LE.NCYCLES)GO TO 403
       RGLOB=0.5
       NGLOB=NDAT2
@@ -2141,9 +2141,9 @@ C$OMP END CRITICAL(STORE1)
 C
 C... Check for supercell
 C
-	CELPRE(1)=A
-	CELPRE(2)=B
-	CELPRE(3)=C
+      CELPRE(1)=A
+      CELPRE(2)=B
+      CELPRE(3)=C
       DO 440 I=1,3
       DO 440 J=1,3
 440   AL(I,J)=0.0
@@ -2154,7 +2154,7 @@ C
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       KM(IGC)=LLHKL
       KM2(IGC)=LHKL
-	IFI(IGC)=IFILE
+      IFI(IGC)=IFILE
       NSOL(IGC)=1
       VGC(IGC)=V1
       RP(IGC)=RMAX
@@ -2191,32 +2191,32 @@ C      IF(INTEREST.GE.1)GO TO 496
       AFI(6)=0
       AFI(7)=0
       AFI(8)=0
-	CELPRE(1)=A
-	CELPRE(2)=B
-	CELPRE(3)=C
+      CELPRE(1)=A
+      CELPRE(2)=B
+      CELPRE(3)=C
       DO 410 I=1,3
       DO 410 J=1,3
 410   AL(I,J)=0.0
 C
 C$OMP CRITICAL(FOUND)
 C
-	IF(RP(IGC).LT.RMI)THEN
+      IF(RP(IGC).LT.RMI)THEN
       INTEREST=INTEREST+1
       WRITE(*,1415)RMAX,A,B,C,V2,IPEN
       WRITE(20,*)
       WRITE(20,*)'====================================================
      1==========================='
       WRITE(20,*)
-	WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
       WRITE(*,*)
-	WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
 C
 C... Refine that cell
 C
       CALL DCELL(CELPRE,AL,V1)
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       CALL CELREF2(INDIC,BB,AFI,LHKL,TH3,IHKL,DDT,DDQ)
-	CNCALC(IGC)=NCALC
+      CNCALC(IGC)=NCALC
       IF(NDAT.GE.20)THEN
       FM20(IGC)=QO(20)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=20./(CNCALC(IGC)*DDT)
@@ -2232,7 +2232,7 @@ C      PRINT 7000,FM20(IGC)
 C      PRINT 7001,FF20(IGC),DDT,NCALC
 C	PRINT *
       IREF=1
-	GO TO 497
+      GO TO 497
       ELSE
 C
 C  Anyway, calculate the M20 and F20 values
@@ -2240,7 +2240,7 @@ C
       CALL DCELL(CELPRE,AL,V1)
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       CALL CELREF2(INDIC,BB,AFI,LHKL,TH3,IHKL,DDT,DDQ)
-	CNCALC(IGC)=NCALC
+      CNCALC(IGC)=NCALC
       IF(NDAT.GE.20)THEN
       FM20(IGC)=QO(20)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=20./(CNCALC(IGC)*DDT)
@@ -2249,7 +2249,7 @@ C
       FM20(IGC)=QO(NDAT)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=PNDAT/(CNCALC(IGC)*DDT)
       ENDIF
-	ENDIF
+      ENDIF
 C
 C Test if cell already found
 C
@@ -2322,10 +2322,10 @@ C
       IF(RMIN.EQ.RMAX)GO TO 498
       IF(IVERB.EQ.1)THEN
       WRITE(20,*)
-	WRITE(20,*)'Best result : a = ',BPAR(1),' Rp = ',RMIN
-	WRITE(20,*)'Best result : b = ',BPAR(2)
-	WRITE(20,*)'Best result : c = ',BPAR(3),'V = ',V3
-	WRITE(20,*)
+      WRITE(20,*)'Best result : a = ',BPAR(1),' Rp = ',RMIN
+      WRITE(20,*)'Best result : b = ',BPAR(2)
+      WRITE(20,*)'Best result : c = ',BPAR(3),'V = ',V3
+      WRITE(20,*)
       CALL DATN(DATENOW,TIMENOW)
       ENDIF
       RMIN=RMAX
@@ -2341,7 +2341,7 @@ C    Monoclinic case
 C
 C
       RPSMALL=1.
-	PRINT *,
+      PRINT *,
      1'Monoclinic:   Rp     a       b       c       bet     V     Nind'
       IFILE=5
       NCYCLES=2000.
@@ -2357,9 +2357,9 @@ C
       PMA(1)=DMAX1*2.1
       PMA(2)=DMAX1*2.1
       PMA(3)=DMAX2*2.1
-	IF(PMA(1).GT.PMAX)PMA(1)=PMAX
-	IF(PMA(2).GT.PMAX)PMA(2)=PMAX
-	IF(PMA(3).GT.PMAX)PMA(3)=PMAX
+      IF(PMA(1).GT.PMAX)PMA(1)=PMAX
+      IF(PMA(2).GT.PMAX)PMA(2)=PMAX
+      IF(PMA(3).GT.PMAX)PMA(3)=PMAX
       VMON=PMA(1)*PMA(2)*PMA(3)
       IF(VMON.GT.3000.)VMON=3000.
       DO 523 I=1,3
@@ -2368,17 +2368,17 @@ C
 523   PSTART(I)=PMI(I)
       ENDIF
 C
-	WRITE(20,*)
-	WRITE(20,*)'Monoclinic Monte Carlo search :'
+      WRITE(20,*)
+      WRITE(20,*)'Monoclinic Monte Carlo search :'
       WRITE(20,*)' Max(a,b,c), V ',PMA(1),PMA(2),PMA(3),VMAX
-	WRITE(20,*)
+      WRITE(20,*)
 C
       IF(IVERB.EQ.1)THEN
-	WRITE(20,580)NRUN,NTIMELIM(5)
+      WRITE(20,580)NRUN,NTIMELIM(5)
       WRITE(20,*)'====================================================
      1==========================='
-	WRITE(20,*)' Rp  Trial number    a   b   c    bet   V  Nind Icod'
-	WRITE(20,*)
+      WRITE(20,*)' Rp  Trial number    a   b   c    bet   V  Nind Icod'
+      WRITE(20,*)
       ENDIF
 580   FORMAT('  Results in monoclinic, run, tests :',I3,F12.0)
 C
@@ -2439,7 +2439,7 @@ C
       ENDIF
       ENDIF
 C
-	DO 599 NRUN=1,NRUNS
+      DO 599 NRUN=1,NRUNS
 *------------------------------------------------------------------------- 
 *     Initialisation
 *
@@ -2447,7 +2447,7 @@ C      CALL ESP_INIT(ISEED)
 *
 *-------------------------------------------------------------------------
       RMAX=RMAXREF
-	RMIN=RMAX
+      RMIN=RMAX
 C
 C...  here starts the loop
 C
@@ -2523,15 +2523,15 @@ C
       GO TO 596
       ENDIF
       IF(NTRIEDB.NE.0.)GO TO 506
-	IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
-	NTRIED=NTRIED-1.
+      IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
+      NTRIED=NTRIED-1.
       NTRIEDT=NTRIEDT+1.
       IF(NTRIEDT.GT.TTMAX)THEN
       NOUT=NOUT+1
       GO TO 596
       ENDIF
-	GO TO 502
-	ENDIF
+      GO TO 502
+      ENDIF
 C
 506   CALL CALCUL1(DIFF,DIFF2)
       IF(NMX.GT.NDAT10)THEN
@@ -2561,18 +2561,18 @@ C
       RMAX=DIFF
       RMAX2=DIFF2
       A=CELPRE(1)
-	B=CELPRE(2)
-	C=CELPRE(3)
-	BET=CELPRE(5)
-	V2=V1
-	IF(DIFF.LT.RMIN)THEN
-	RMIN=DIFF
-	BPAR(1)=A
-	BPAR(2)=B
+      B=CELPRE(2)
+      C=CELPRE(3)
+      BET=CELPRE(5)
+      V2=V1
+      IF(DIFF.LT.RMIN)THEN
+      RMIN=DIFF
+      BPAR(1)=A
+      BPAR(2)=B
       BPAR(3)=C
       BPAR(5)=BET
-	V3=V1
-	ENDIF
+      V3=V1
+      ENDIF
 C
 C... "Refine" that cell (by Monte Carlo too...)
 C
@@ -2580,7 +2580,7 @@ C
       PSTARTB(2)=CELPRE(2)
       PSTARTB(3)=CELPRE(3)
       PSTARTB(5)=CELPRE(5)
-	ENDIF
+      ENDIF
       IF(NTRIEDB.LE.NCYCLES)GO TO 503
       RGLOB=0.5
       NGLOB=NDAT2
@@ -2631,10 +2631,10 @@ C$OMP END CRITICAL(STORE1)
 C
 C... Check for supercell
 C
-	CELPRE(1)=A
-	CELPRE(2)=B
-	CELPRE(3)=C
-	CELPRE(5)=BET
+      CELPRE(1)=A
+      CELPRE(2)=B
+      CELPRE(3)=C
+      CELPRE(5)=BET
       DO 540 I=1,3
       DO 540 J=1,3
 540   AL(I,J)=0.0
@@ -2645,7 +2645,7 @@ C
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       KM(IGC)=LLHKL
       KM2(IGC)=LHKL
-	IFI(IGC)=IFILE
+      IFI(IGC)=IFILE
       NSOL(IGC)=1
       VGC(IGC)=V1
       RP(IGC)=RMAX
@@ -2682,9 +2682,9 @@ C      IF(INTEREST.GE.1)GO TO 596
       AFI(6)=0
       AFI(7)=1
       AFI(8)=0
-	CELPRE(1)=A
-	CELPRE(2)=B
-	CELPRE(3)=C
+      CELPRE(1)=A
+      CELPRE(2)=B
+      CELPRE(3)=C
       CELPRE(5)=BET
       DO 510 I=1,3
       DO 510 J=1,3
@@ -2692,23 +2692,23 @@ C      IF(INTEREST.GE.1)GO TO 596
 C
 C$OMP CRITICAL(FOUND)
 C
-	IF(RP(IGC).LT.RMI)THEN
+      IF(RP(IGC).LT.RMI)THEN
       INTEREST=INTEREST+1
       WRITE(*,1515)RMAX,A,B,C,BET,V2,IPEN
       WRITE(20,*)
       WRITE(20,*)'====================================================
      1==========================='
       WRITE(20,*)
-	WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
       WRITE(*,*)
-	WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
 C
 C... Refine that cell
 C
       CALL DCELL(CELPRE,AL,V1)
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       CALL CELREF2(INDIC,BB,AFI,LHKL,TH3,IHKL,DDT,DDQ)
-	CNCALC(IGC)=NCALC
+      CNCALC(IGC)=NCALC
       IF(NDAT.GE.20)THEN
       FM20(IGC)=QO(20)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=20./(CNCALC(IGC)*DDT)
@@ -2724,7 +2724,7 @@ C      PRINT 7000,FM20(IGC)
 C      PRINT 7001,FF20(IGC),DDT,NCALC
 C	PRINT *
       IREF=1
-	GO TO 597
+      GO TO 597
       ELSE
 C
 C  Anyway, calculate the M20 and F20 values
@@ -2732,7 +2732,7 @@ C
       CALL DCELL(CELPRE,AL,V1)
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       CALL CELREF2(INDIC,BB,AFI,LHKL,TH3,IHKL,DDT,DDQ)
-	CNCALC(IGC)=NCALC
+      CNCALC(IGC)=NCALC
       IF(NDAT.GE.20)THEN
       FM20(IGC)=QO(20)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=20./(CNCALC(IGC)*DDT)
@@ -2741,7 +2741,7 @@ C
       FM20(IGC)=QO(NDAT)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=PNDAT/(CNCALC(IGC)*DDT)
       ENDIF
-	ENDIF
+      ENDIF
 C
 C Test if cell already found
 C
@@ -2819,11 +2819,11 @@ C
       IF(RMIN.EQ.RMAX)GO TO 598
       IF(IVERB.EQ.1)THEN
       WRITE(20,*)
-	WRITE(20,*)'Best result : a =    ',BPAR(1),' Rp = ',RMIN
-	WRITE(20,*)'Best result : b =    ',BPAR(2)
-	WRITE(20,*)'Best result : c =    ',BPAR(3)
-	WRITE(20,*)'Best result : beta = ',BPAR(5),'  V = ',V3
-	WRITE(20,*)
+      WRITE(20,*)'Best result : a =    ',BPAR(1),' Rp = ',RMIN
+      WRITE(20,*)'Best result : b =    ',BPAR(2)
+      WRITE(20,*)'Best result : c =    ',BPAR(3)
+      WRITE(20,*)'Best result : beta = ',BPAR(5),'  V = ',V3
+      WRITE(20,*)
       CALL DATN(DATENOW,TIMENOW)
       ENDIF
       RMIN=RMAX
@@ -2839,7 +2839,7 @@ C    Triclinic case
 C
 C
       RPSMALL=1.
-	PRINT *,'Triclinic:    Rp
+      PRINT *,'Triclinic:    Rp
      1     a       b       c       alp    bet    gam     V     Nind'
       IFILE=6
       NCYCLES=5000.
@@ -2853,9 +2853,9 @@ C
       PMA(1)=DMAX1*1.5
       PMA(2)=DMAX2*1.5
       PMA(3)=DMAX3*1.5
-	IF(PMA(1).GT.PMAX)PMA(1)=PMAX
-	IF(PMA(2).GT.PMAX)PMA(2)=PMAX
-	IF(PMA(3).GT.PMAX)PMA(3)=PMAX
+      IF(PMA(1).GT.PMAX)PMA(1)=PMAX
+      IF(PMA(2).GT.PMAX)PMA(2)=PMAX
+      IF(PMA(3).GT.PMAX)PMA(3)=PMAX
       VTRIC=PMA(1)*PMA(2)*PMA(3)
       IF(VTRIC.GT.2000.)VTRIC=2000.
       VMAX=VTRIC
@@ -2865,17 +2865,17 @@ C
 623   PSTART(I)=PMI(I)
       ENDIF
 C
-	WRITE(20,*)
-	WRITE(20,*)'Triclinic Monte Carlo search :'
+      WRITE(20,*)
+      WRITE(20,*)'Triclinic Monte Carlo search :'
       WRITE(20,*)' Max(a,b,c), V ',PMA(1),PMA(2),PMA(3),VTRIC
-	WRITE(20,*)
+      WRITE(20,*)
 C
       IF(IVERB.EQ.1)THEN
-	WRITE(20,680)NRUN,NTIMELIM(6)
+      WRITE(20,680)NRUN,NTIMELIM(6)
       WRITE(20,*)'====================================================
      1==========================='
-	WRITE(20,*)' Rp Trial number  a  b  c  alp bet gam  V  Nind icod'
-	WRITE(20,*)
+      WRITE(20,*)' Rp Trial number  a  b  c  alp bet gam  V  Nind icod'
+      WRITE(20,*)
       ENDIF
 680   FORMAT('  Results in triclinic, run, tests :',I3,F12.0)
 C
@@ -2890,7 +2890,7 @@ C
 601   READ(35,*)(IHH(KK,I),KK=1,3)
       CLOSE(35)
 C
-	DO 699 NRUN2=1,NRUNS2
+      DO 699 NRUN2=1,NRUNS2
 C
       IF(NGRID.EQ.3)THEN
       IF(NRUN2.EQ.1)THEN
@@ -2950,7 +2950,7 @@ C
       ENDIF
       ENDIF
 C
-	DO 699 NRUN=1,NRUNS
+      DO 699 NRUN=1,NRUNS
 *------------------------------------------------------------------------- 
 *     Initialisation
 *
@@ -2958,7 +2958,7 @@ C      CALL ESP_INIT(ISEED)
 *
 *-------------------------------------------------------------------------
       RMAX=RMAXREF
-	RMIN=RMAX
+      RMIN=RMAX
 C
 C...  here starts the loop
 C
@@ -3050,15 +3050,15 @@ C
       GO TO 696
       ENDIF
       IF(NTRIEDB.NE.0.)GO TO 606
-	IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
-	NTRIED=NTRIED-1.
+      IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
+      NTRIED=NTRIED-1.
       NTRIEDT=NTRIEDT+1.
       IF(NTRIEDT.GT.TTMAX)THEN
       NOUT=NOUT+1
       GO TO 696
       ENDIF
-	GO TO 602
-	ENDIF
+      GO TO 602
+      ENDIF
 C
 606   CALL CALCUL1(DIFF,DIFF2)
       IF(NMX.GT.NDAT10)THEN
@@ -3088,22 +3088,22 @@ C
       RMAX=DIFF
       RMAX2=DIFF2
       A=CELPRE(1)
-	B=CELPRE(2)
-	C=CELPRE(3)
-	ALP=CELPRE(4)
-	BET=CELPRE(5)
-	GAM=CELPRE(6)
-	V2=V1
-	IF(DIFF.LT.RMIN)THEN
-	RMIN=DIFF
-	BPAR(1)=A
-	BPAR(2)=B
+      B=CELPRE(2)
+      C=CELPRE(3)
+      ALP=CELPRE(4)
+      BET=CELPRE(5)
+      GAM=CELPRE(6)
+      V2=V1
+      IF(DIFF.LT.RMIN)THEN
+      RMIN=DIFF
+      BPAR(1)=A
+      BPAR(2)=B
       BPAR(3)=C
       BPAR(4)=ALP
       BPAR(5)=BET
       BPAR(6)=GAM
-	V3=V1
-	ENDIF
+      V3=V1
+      ENDIF
 C
 C... "Refine" that cell (by Monte Carlo too...)
 C
@@ -3113,7 +3113,7 @@ C
       PSTARTB(4)=CELPRE(4)
       PSTARTB(5)=CELPRE(5)
       PSTARTB(6)=CELPRE(6)
-	ENDIF
+      ENDIF
       IF(NTRIEDB.LE.NCYCLES)GO TO 603
       RGLOB=0.5
       NGLOB=NDAT2
@@ -3166,12 +3166,12 @@ C$OMP END CRITICAL(STORE1)
 C
 C... Check for supercell
 C
-	CELPRE(1)=A
-	CELPRE(2)=B
-	CELPRE(3)=C
-	CELPRE(4)=ALP
-	CELPRE(5)=BET
-	CELPRE(6)=GAM
+      CELPRE(1)=A
+      CELPRE(2)=B
+      CELPRE(3)=C
+      CELPRE(4)=ALP
+      CELPRE(5)=BET
+      CELPRE(6)=GAM
       DO 640 I=1,3
       DO 640 J=1,3
 640   AL(I,J)=0.0
@@ -3183,7 +3183,7 @@ C
 
       KM(IGC)=LLHKL
       KM2(IGC)=LHKL
-	IFI(IGC)=IFILE
+      IFI(IGC)=IFILE
       NSOL(IGC)=1
       VGC(IGC)=V1
       RP(IGC)=RMAX
@@ -3220,9 +3220,9 @@ C      IF(INTEREST.GE.1)GO TO 696
       AFI(6)=1
       AFI(7)=1
       AFI(8)=1
-	CELPRE(1)=A
-	CELPRE(2)=B
-	CELPRE(3)=C
+      CELPRE(1)=A
+      CELPRE(2)=B
+      CELPRE(3)=C
       CELPRE(4)=ALP
       CELPRE(5)=BET
       CELPRE(6)=GAM
@@ -3232,23 +3232,23 @@ C      IF(INTEREST.GE.1)GO TO 696
 C
 C$OMP CRITICAL(FOUND)
 C
-	IF(RP(IGC).LT.RMI)THEN
+      IF(RP(IGC).LT.RMI)THEN
       INTEREST=INTEREST+1
       WRITE(*,1615)RMAX,A,B,C,ALP,BET,GAM,V2,IPEN
       WRITE(20,*)
       WRITE(20,*)'====================================================
      1==========================='
       WRITE(20,*)
-	WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
       WRITE(*,*)
-	WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
 C
 C... Refine that cell
 C
       CALL DCELL(CELPRE,AL,V1)
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       CALL CELREF2(INDIC,BB,AFI,LHKL,TH3,IHKL,DDT,DDQ)
-	CNCALC(IGC)=NCALC
+      CNCALC(IGC)=NCALC
       IF(NDAT.GE.20)THEN
       FM20(IGC)=QO(20)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=20./(CNCALC(IGC)*DDT)
@@ -3264,7 +3264,7 @@ C      PRINT 7000,FM20(IGC)
 C      PRINT 7001,FF20(IGC),DDT,NCALC
 C	PRINT *
       IREF=1
-	GO TO 697
+      GO TO 697
       ELSE
 C
 C  Anyway, calculate the M20 and F20 values
@@ -3272,7 +3272,7 @@ C
       CALL DCELL(CELPRE,AL,V1)
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       CALL CELREF2(INDIC,BB,AFI,LHKL,TH3,IHKL,DDT,DDQ)
-	CNCALC(IGC)=NCALC
+      CNCALC(IGC)=NCALC
       IF(NDAT.GE.20)THEN
       FM20(IGC)=QO(20)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=20./(CNCALC(IGC)*DDT)
@@ -3281,7 +3281,7 @@ C
       FM20(IGC)=QO(NDAT)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=PNDAT/(CNCALC(IGC)*DDT)
       ENDIF
-	ENDIF
+      ENDIF
 C
 C Test if cell already found
 C
@@ -3372,13 +3372,13 @@ C
       IF(RMIN.EQ.RMAX)GO TO 698
       IF(IVERB.EQ.1)THEN
       WRITE(20,*)
-	WRITE(20,*)'Best result : a =    ',BPAR(1),' Rp = ',RMIN
-	WRITE(20,*)'Best result : b =    ',BPAR(2)
-	WRITE(20,*)'Best result : c =    ',BPAR(3)
-	WRITE(20,*)'Best result : alph = ',BPAR(4)
-	WRITE(20,*)'Best result : beta = ',BPAR(5)
-	WRITE(20,*)'Best result : gamm = ',BPAR(6),'  V = ',V3
-	WRITE(20,*)
+      WRITE(20,*)'Best result : a =    ',BPAR(1),' Rp = ',RMIN
+      WRITE(20,*)'Best result : b =    ',BPAR(2)
+      WRITE(20,*)'Best result : c =    ',BPAR(3)
+      WRITE(20,*)'Best result : alph = ',BPAR(4)
+      WRITE(20,*)'Best result : beta = ',BPAR(5)
+      WRITE(20,*)'Best result : gamm = ',BPAR(6),'  V = ',V3
+      WRITE(20,*)
       CALL DATN(DATENOW,TIMENOW)
       ENDIF
       RMIN=RMAX
@@ -3393,8 +3393,8 @@ C   SECOND PART OF McMAILLE : GRID SEARCH...
 C
 700   IF(NGRID.EQ.0)  GO TO 5000
       IF(NBLACK.EQ.0.AND.NGRID.EQ.3) GO TO 5000
-	PRINT *
-	PRINT *,'Grid search :'
+      PRINT *
+      PRINT *,'Grid search :'
 C
 C...  Cell generation by systematic grid
 C
@@ -3404,7 +3404,7 @@ C
 C    Cubic case
 C
       RPSMALL=1.
-	PRINT *,'Cubic:        Rp     a       V     Nind'
+      PRINT *,'Cubic:        Rp     a       V     Nind'
 *------------------------------------------------------------------------- 
 *     Initialisation
 *
@@ -3413,7 +3413,7 @@ C      CALL ESP_INIT(ISEED)
 *-------------------------------------------------------------------------
       IFILE=1
       RMAX=RMAXREF
-	RMIN=RMAX
+      RMIN=RMAX
       NTRIED=0.
       NCYCLES=200.
       CY=NCYCLES*1.1
@@ -3421,11 +3421,11 @@ C      CALL ESP_INIT(ISEED)
       CELPRE(5)=90.
       CELPRE(6)=90.
       IF(IVERB.EQ.1)THEN
-	WRITE(20,*)
+      WRITE(20,*)
       WRITE(20,*)'====================================================
      1==========================='
-	WRITE(20,*)'Grid search :'
-	WRITE(20,*)'   Results in cubic :'
+      WRITE(20,*)'Grid search :'
+      WRITE(20,*)'   Results in cubic :'
       WRITE(20,*)'====================================================
      1==========================='
       ENDIF
@@ -3437,12 +3437,12 @@ C
       PMA(1)=PMAX
       VMIN=8.
       VMAX=PMAX*PMAX*PMAX
-	IF(IVERB.EQ.1)WRITE(20,*)' Max a, V ',PMAX,VMAX
+      IF(IVERB.EQ.1)WRITE(20,*)' Max a, V ',PMAX,VMAX
       ENDIF
 C
       IF(IVERB.EQ.1)THEN
-	WRITE(20,*)' Rp  Trial number    a         V  Nind Icod'
-	WRITE(20,*)
+      WRITE(20,*)' Rp  Trial number    a         V  Nind Icod'
+      WRITE(20,*)
       ENDIF
 C
 C     READ hkl Miller indices in cub.hkl
@@ -3476,10 +3476,10 @@ C
       CALL DCELL(CELPRE,AL,V1)
       IF(CELPRE(1).GT.PMA(1).AND.NTRIEDB.EQ.0.)GO TO 1116
       IF(NTRIEDB.NE.0.)GO TO 1106
-	IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
-	NTRIED=NTRIED-1.
-	GO TO 1102
-	ENDIF
+      IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
+      NTRIED=NTRIED-1.
+      GO TO 1102
+      ENDIF
 C
 1106  CALL CALCUL1(DIFF,DIFF2)
       IF(NMX.GT.NDAT10)THEN
@@ -3505,17 +3505,17 @@ C
       RMAX=DIFF
       RMAX2=DIFF2
       A=CELPRE(1)
-	V2=V1
-	IF(DIFF.LT.RMIN)THEN
-	RMIN=DIFF
-	BPAR(1)=A
-	V3=V1
-	ENDIF
+      V2=V1
+      IF(DIFF.LT.RMIN)THEN
+      RMIN=DIFF
+      BPAR(1)=A
+      V3=V1
+      ENDIF
 C
 C... "Refine" that cell (by Monte Carlo too...)
 C
       PSTARTB(1)=CELPRE(1)
-	ENDIF
+      ENDIF
       IF(NTRIEDB.LE.NCYCLES)GO TO 1103
       NTRIEDB=0.
       IF(RMAX.GE.RMAX0(1))GO TO 1117
@@ -3554,9 +3554,9 @@ C
 C
 C... Check for supercell
 C
-	CELPRE(1)=A
-	CELPRE(2)=A
-	CELPRE(3)=A
+      CELPRE(1)=A
+      CELPRE(2)=A
+      CELPRE(3)=A
       DO 1140 I=1,3
       DO 1140 J=1,3
 1140  AL(I,J)=0.0
@@ -3564,7 +3564,7 @@ C
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       KM(IGC)=LLHKL
       KM2(IGC)=LHKL
-	IFI(IGC)=IFILE
+      IFI(IGC)=IFILE
       NSOL(IGC)=1
       VGC(IGC)=V1
       RP(IGC)=RMAX
@@ -3585,15 +3585,15 @@ C
 C
 C... Check for interesting result
 C
-	IF(RP(IGC).LT.RMI)THEN
+      IF(RP(IGC).LT.RMI)THEN
       WRITE(*,1115)RMAX,A,V2,IPEN
       WRITE(20,*)
       WRITE(20,*)'====================================================
      1==========================='
       WRITE(20,*)
-	WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
       WRITE(*,*)
-	WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
 C
 C... Refine that cell
 C
@@ -3610,9 +3610,9 @@ C
       AFI(6)=0
       AFI(7)=0
       AFI(8)=0
-	CELPRE(1)=A
-	CELPRE(2)=A
-	CELPRE(3)=A
+      CELPRE(1)=A
+      CELPRE(2)=A
+      CELPRE(3)=A
       DO 1110 I=1,3
       DO 1110 J=1,3
 1110  AL(I,J)=0.0
@@ -3620,19 +3620,19 @@ C
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       CALL CELREF(INDIC,BB,AFI,LHKL,TH3,IHKL,DDT,DDQ)
       IF(NDAT.GE.20)THEN
-	CNCALC(IGC)=NCALC
+      CNCALC(IGC)=NCALC
       FM20(IGC)=QO(20)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=20./(CNCALC(IGC)*DDT)
       WRITE(20,7000)FM20(IGC)
       WRITE(20,7001)FF20(IGC),DDT,NCALC
-	WRITE(20,*)
+      WRITE(20,*)
       PRINT 7000,FM20(IGC)
       PRINT 7001,FF20(IGC),DDT,NCALC
-	PRINT *
+      PRINT *
       ENDIF
       IREF=1
-	GO TO 5000
-	ENDIF
+      GO TO 5000
+      ENDIF
 C
 C Test if cell already found
 C
@@ -3683,8 +3683,8 @@ C
       IF(RMIN.EQ.RMAX)GO TO 1198
       IF(IVERB.EQ.1)THEN
       WRITE(20,*)
-	WRITE(20,*)'Best result : a=',BPAR(1),'V=',V3,' Rp= ',RMIN
-	WRITE(20,*)
+      WRITE(20,*)'Best result : a=',BPAR(1),'V=',V3,' Rp= ',RMIN
+      WRITE(20,*)
       CALL DATN(DATENOW,TIMENOW)
       ENDIF
       RMIN=RMAX
@@ -3702,9 +3702,9 @@ C
 1290  CONTINUE
       IF(IHR.EQ.2)NSYS(2)=2
       IF(IVERB.EQ.1)THEN
-	IF(NSYS(2).EQ.1)PRINT *,
+      IF(NSYS(2).EQ.1)PRINT *,
      1'Hexagonal:    Rp     a      c       V     Nind'
-	IF(NSYS(2).EQ.2)PRINT *,
+      IF(NSYS(2).EQ.2)PRINT *,
      1'Rhombohedral: Rp     a      c       V     Nind'
       ENDIF
       RPSMALL=1.
@@ -3716,7 +3716,7 @@ C      CALL ESP_INIT(ISEED)
 *-------------------------------------------------------------------------
       IFILE=2
       RMAX=RMAXREF
-	RMIN=RMAX
+      RMIN=RMAX
       NTRIED=0.
       NCYCLES=500.
       CY=NCYCLES*1.1
@@ -3724,12 +3724,12 @@ C      CALL ESP_INIT(ISEED)
       CELPRE(5)=90.
       CELPRE(6)=120.
       IF(IVERB.EQ.1)THEN
-	WRITE(20,*)
+      WRITE(20,*)
       WRITE(20,*)'====================================================
      1==========================='
-	WRITE(20,*)'Grid search :'
-	IF(NSYS(2).EQ.1)WRITE(20,*)'   Results in hexagonal'
-	IF(NSYS(2).EQ.2)WRITE(20,*)'   Results in rhombohedral'
+      WRITE(20,*)'Grid search :'
+      IF(NSYS(2).EQ.1)WRITE(20,*)'   Results in hexagonal'
+      IF(NSYS(2).EQ.2)WRITE(20,*)'   Results in rhombohedral'
       WRITE(20,*)'====================================================
      1==========================='
       ENDIF
@@ -3747,19 +3747,19 @@ C
       VMIN=8.
       VMAX=PMA(1)*PMA(2)*PMA(3)
       IF(VMAX.GT.4000.)VMAX=4000.
-	IF(IVERB.EQ.1)WRITE(20,*)' Max(a,c), V ',PMA(1),PMA(3),VMAX
+      IF(IVERB.EQ.1)WRITE(20,*)' Max(a,c), V ',PMA(1),PMA(3),VMAX
       ENDIF
 C
       IF(IVERB.EQ.1)THEN
-	WRITE(20,*)' Rp  Trial number    a      c        V  Nind Icod'
-	WRITE(20,*)
+      WRITE(20,*)' Rp  Trial number    a      c        V  Nind Icod'
+      WRITE(20,*)
       ENDIF
 C
 C     READ hkl Miller indices in hex.hkl
 C
       IF(NSYS(2).EQ.2)GO TO 1260
       TEMPO='hex.hkl'
-	GO TO 1261
+      GO TO 1261
 1260  TEMPO='rho.hkl'
       IFILE=7
 1261  CALL OPEN_READ1(35,TEMPO)
@@ -3789,7 +3789,7 @@ C
       IF(IFIN.EQ.1)THEN
       CELPRE(1)=CELPRE(1)+SPAR
       IF(CELPRE(1).GT.PMA(1))GO TO 1216
-	IFIN=0
+      IFIN=0
       NTRIED=NTRIED+1.
       ENDIF
       CELPRE(3)=CELPRE(3)+SPAR
@@ -3813,10 +3813,10 @@ C
       CALL DCELL(CELPRE,AL,V1)
       IF(CELPRE(1).GT.PMA(1).AND.NTRIEDB.EQ.0.)GO TO 1216
       IF(NTRIEDB.NE.0.)GO TO 1206
-	IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
-	NTRIED=NTRIED-1.
-	GO TO 1202
-	ENDIF
+      IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
+      NTRIED=NTRIED-1.
+      GO TO 1202
+      ENDIF
 C
 1206  CALL CALCUL1(DIFF,DIFF2)
       IF(NMX.GT.NDAT10)THEN
@@ -3843,20 +3843,20 @@ C
       RMAX=DIFF
       RMAX2=DIFF2
       A=CELPRE(1)
-	C=CELPRE(3)
-	V2=V1
-	IF(DIFF.LT.RMIN)THEN
-	RMIN=DIFF
-	BPAR(1)=A
+      C=CELPRE(3)
+      V2=V1
+      IF(DIFF.LT.RMIN)THEN
+      RMIN=DIFF
+      BPAR(1)=A
       BPAR(3)=C
-	V3=V1
-	ENDIF
+      V3=V1
+      ENDIF
 C
 C... "Refine" that cell (by Monte Carlo too...)
 C
       PSTARTB(1)=CELPRE(1)
       PSTARTB(3)=CELPRE(3)
-	ENDIF
+      ENDIF
       IF(NTRIEDB.LE.NCYCLES)GO TO 1203
       NTRIEDB=0.
       IF(RMAX.GE.RMAX0(2))GO TO 1217
@@ -3895,9 +3895,9 @@ C
 C
 C... Check for supercell
 C
-	CELPRE(1)=A
-	CELPRE(2)=A
-	CELPRE(3)=C
+      CELPRE(1)=A
+      CELPRE(2)=A
+      CELPRE(3)=C
       DO 1240 I=1,3
       DO 1240 J=1,3
 1240  AL(I,J)=0.0
@@ -3905,7 +3905,7 @@ C
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       KM(IGC)=LLHKL
       KM2(IGC)=LHKL
-	IFI(IGC)=IFILE
+      IFI(IGC)=IFILE
       NSOL(IGC)=1
       VGC(IGC)=V1
       RP(IGC)=RMAX
@@ -3926,15 +3926,15 @@ C
 C
 C... Check for interesting result
 C
-	IF(RP(IGC).LT.RMI)THEN
+      IF(RP(IGC).LT.RMI)THEN
       WRITE(*,1215)RMAX,A,C,V2,IPEN
       WRITE(20,*)
       WRITE(20,*)'====================================================
      1==========================='
       WRITE(20,*)
-	WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
       WRITE(*,*)
-	WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
 C
 C... Refine that cell
 C
@@ -3951,9 +3951,9 @@ C
       AFI(6)=0
       AFI(7)=0
       AFI(8)=0
-	CELPRE(1)=A
-	CELPRE(2)=A
-	CELPRE(3)=C
+      CELPRE(1)=A
+      CELPRE(2)=A
+      CELPRE(3)=C
       DO 1210 I=1,3
       DO 1210 J=1,3
 1210  AL(I,J)=0.0
@@ -3961,19 +3961,19 @@ C
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       CALL CELREF(INDIC,BB,AFI,LHKL,TH3,IHKL,DDT,DDQ)
       IF(NDAT.GE.20)THEN
-	CNCALC(IGC)=NCALC
+      CNCALC(IGC)=NCALC
       FM20(IGC)=QO(20)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=20./(CNCALC(IGC)*DDT)
       WRITE(20,7000)FM20(IGC)
       WRITE(20,7001)FF20(IGC),DDT,NCALC
-	WRITE(20,*)
+      WRITE(20,*)
       PRINT 7000,FM20(IGC)
       PRINT 7001,FF20(IGC),DDT,NCALC
-	PRINT *
+      PRINT *
       ENDIF
       IREF=1
-	GO TO 5000
-	ENDIF
+      GO TO 5000
+      ENDIF
 C
 C Test if cell already found
 C
@@ -4028,9 +4028,9 @@ C
       IF(RMIN.EQ.RMAX)GO TO 1298
       IF(IVERB.EQ.1)THEN
       WRITE(20,*)
-	WRITE(20,*)'Best result : a = ',BPAR(1),' Rp = ',RMIN
-	WRITE(20,*)'Best result : c = ',BPAR(3),'V = ',V3
-	WRITE(20,*)
+      WRITE(20,*)'Best result : a = ',BPAR(1),' Rp = ',RMIN
+      WRITE(20,*)'Best result : c = ',BPAR(3),'V = ',V3
+      WRITE(20,*)
       CALL DATN(DATENOW,TIMENOW)
       ENDIF
       RMIN=RMAX
@@ -4045,7 +4045,7 @@ C    Tetragonal case
 C
 C
       RPSMALL=1.
-	PRINT *,'Tetragonal:   Rp     a       c        V     Nind'
+      PRINT *,'Tetragonal:   Rp     a       c        V     Nind'
 *------------------------------------------------------------------------- 
 *     Initialisation
 *
@@ -4054,7 +4054,7 @@ C      CALL ESP_INIT(ISEED)
 *-------------------------------------------------------------------------
       IFILE=3
       RMAX=RMAXREF
-	RMIN=RMAX
+      RMIN=RMAX
       NTRIED=0.
       NCYCLES=500.
       CY=NCYCLES*1.1
@@ -4062,11 +4062,11 @@ C      CALL ESP_INIT(ISEED)
       CELPRE(5)=90.
       CELPRE(6)=90.
       IF(IVERB.EQ.1)THEN
-	WRITE(20,*)
+      WRITE(20,*)
       WRITE(20,*)'====================================================
      1==========================='
-	WRITE(20,*)'Grid search :'
-	WRITE(20,*)'   Results in tetragonal :'
+      WRITE(20,*)'Grid search :'
+      WRITE(20,*)'   Results in tetragonal :'
       WRITE(20,*)'====================================================
      1==========================='
       ENDIF
@@ -4083,12 +4083,12 @@ C
       VMIN=8.
       VMAX=PMA(1)*PMA(2)*PMA(3)
       IF(VMAX.GT.4000.)VMAX=4000.
-	IF(IVERB.EQ.1)WRITE(20,*)' Max(a,c), V ',PMA(1),PMA(3),VMAX
+      IF(IVERB.EQ.1)WRITE(20,*)' Max(a,c), V ',PMA(1),PMA(3),VMAX
       ENDIF
 C
       IF(IVERB.EQ.1)THEN
-	WRITE(20,*)' Rp  Trial number    a      c        V  Nind Icod'
-	WRITE(20,*)
+      WRITE(20,*)' Rp  Trial number    a      c        V  Nind Icod'
+      WRITE(20,*)
       ENDIF
 C
 C     READ hkl Miller indices in tet.hkl
@@ -4117,7 +4117,7 @@ C
       IF(IFIN.EQ.1)THEN
       CELPRE(1)=CELPRE(1)+SPAR
       IF(CELPRE(1).GT.PMA(1))GO TO 1316
-	IFIN=0
+      IFIN=0
       NTRIED=NTRIED+1.
       ENDIF
       CELPRE(3)=CELPRE(3)+SPAR
@@ -4141,10 +4141,10 @@ C
       CALL DCELL(CELPRE,AL,V1)
       IF(CELPRE(1).GT.PMA(1).AND.NTRIEDB.EQ.0.)GO TO 1316
       IF(NTRIEDB.NE.0.)GO TO 1306
-	IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
+      IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
       NTRIED=NTRIED-1
-	GO TO 1302
-	ENDIF
+      GO TO 1302
+      ENDIF
 C
 1306  CALL CALCUL1(DIFF,DIFF2)
       IF(NMX.GT.NDAT10)THEN
@@ -4171,20 +4171,20 @@ C
       RMAX=DIFF
       RMAX2=DIFF2
       A=CELPRE(1)
-	C=CELPRE(3)
-	V2=V1
-	IF(DIFF.LT.RMIN)THEN
-	RMIN=DIFF
-	BPAR(1)=A
+      C=CELPRE(3)
+      V2=V1
+      IF(DIFF.LT.RMIN)THEN
+      RMIN=DIFF
+      BPAR(1)=A
       BPAR(3)=C
-	V3=V1
-	ENDIF
+      V3=V1
+      ENDIF
 C
 C... "Refine" that cell (by Monte Carlo too...)
 C
       PSTARTB(1)=CELPRE(1)
       PSTARTB(3)=CELPRE(3)
-	ENDIF
+      ENDIF
       IF(NTRIEDB.LE.NCYCLES)GO TO 1303
       NTRIEDB=0.
       IF(RMAX.GE.RMAX0(3))GO TO 1317
@@ -4223,9 +4223,9 @@ C
 C
 C... Check for supercell
 C
-	CELPRE(1)=A
-	CELPRE(2)=A
-	CELPRE(3)=C
+      CELPRE(1)=A
+      CELPRE(2)=A
+      CELPRE(3)=C
       DO 1340 I=1,3
       DO 1340 J=1,3
 1340  AL(I,J)=0.0
@@ -4233,7 +4233,7 @@ C
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       KM(IGC)=LLHKL
       KM2(IGC)=LHKL
-	IFI(IGC)=IFILE
+      IFI(IGC)=IFILE
       NSOL(IGC)=1
       VGC(IGC)=V1
       RP(IGC)=RMAX
@@ -4254,15 +4254,15 @@ C
 C
 C... Check for interesting result
 C
-	IF(RP(IGC).LT.RMI)THEN
+      IF(RP(IGC).LT.RMI)THEN
       WRITE(*,1215)RMAX,A,C,V2,IPEN
       WRITE(20,*)
       WRITE(20,*)'====================================================
      1==========================='
       WRITE(20,*)
-	WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
       WRITE(*,*)
-	WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
 C
 C... Refine that cell
 C
@@ -4279,9 +4279,9 @@ C
       AFI(6)=0
       AFI(7)=0
       AFI(8)=0
-	CELPRE(1)=A
-	CELPRE(2)=A
-	CELPRE(3)=C
+      CELPRE(1)=A
+      CELPRE(2)=A
+      CELPRE(3)=C
       DO 1310 I=1,3
       DO 1310 J=1,3
 1310  AL(I,J)=0.0
@@ -4289,19 +4289,19 @@ C
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       CALL CELREF(INDIC,BB,AFI,LHKL,TH3,IHKL,DDT,DDQ)
       IF(NDAT.GE.20)THEN
-	CNCALC(IGC)=NCALC
+      CNCALC(IGC)=NCALC
       FM20(IGC)=QO(20)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=20./(CNCALC(IGC)*DDT)
       WRITE(20,7000)FM20(IGC)
       WRITE(20,7001)FF20(IGC),DDT,NCALC
-	WRITE(20,*)
+      WRITE(20,*)
       PRINT 7000,FM20(IGC)
       PRINT 7001,FF20(IGC),DDT,NCALC
-	PRINT *
+      PRINT *
       ENDIF
       IREF=1
-	GO TO 5000
-	ENDIF
+      GO TO 5000
+      ENDIF
 C
 C Test if cell already found
 C
@@ -4356,9 +4356,9 @@ C
       IF(RMIN.EQ.RMAX)GO TO 1398
       IF(IVERB.EQ.1)THEN
       WRITE(20,*)
-	WRITE(20,*)'Best result : a = ',BPAR(1),' Rp = ',RMIN
-	WRITE(20,*)'Best result : c = ',BPAR(3),'V = ',V3
-	WRITE(20,*)
+      WRITE(20,*)'Best result : a = ',BPAR(1),' Rp = ',RMIN
+      WRITE(20,*)'Best result : c = ',BPAR(3),'V = ',V3
+      WRITE(20,*)
       CALL DATN(DATENOW,TIMENOW)
       ENDIF
       RMIN=RMAX
@@ -4371,7 +4371,7 @@ C    Orthorhombic case
 C
 C
       RPSMALL=1.
-	PRINT *,'Orthorhombic: Rp     a       b       c        V     Nind'
+      PRINT *,'Orthorhombic: Rp     a       b       c        V     Nind'
 *------------------------------------------------------------------------- 
 *     Initialisation
 *
@@ -4380,7 +4380,7 @@ C      CALL ESP_INIT(ISEED)
 *-------------------------------------------------------------------------
       IFILE=4
       RMAX=RMAXREF
-	RMIN=RMAX
+      RMIN=RMAX
       NTRIED=0.
       NCYCLES=1000.
       CY=NCYCLES*1.1
@@ -4388,11 +4388,11 @@ C      CALL ESP_INIT(ISEED)
       CELPRE(5)=90.
       CELPRE(6)=90.
       IF(IVERB.EQ.1)THEN
-	WRITE(20,*)
+      WRITE(20,*)
       WRITE(20,*)'====================================================
      1==========================='
-	WRITE(20,*)'Grid search :'
-	WRITE(20,*)'   Results in orthorhombic :'
+      WRITE(20,*)'Grid search :'
+      WRITE(20,*)'   Results in orthorhombic :'
       WRITE(20,*)'====================================================
      1==========================='
       ENDIF
@@ -4412,13 +4412,13 @@ C
       VMIN=8.
       VMAX=PMA(1)*PMA(2)*PMA(3)
       IF(VMAX.GT.2000.)VMAX=2000.
-	IF(IVERB.EQ.1)
+      IF(IVERB.EQ.1)
      1WRITE(20,*)' Max (a,b,c), V ',PMA(1),PMA(2),PMA(3),VMAX
       ENDIF
 C
       IF(IVERB.EQ.1)THEN
-	WRITE(20,*)' Rp  Trial number    a   b   c        V  Nind Icod'
-	WRITE(20,*)
+      WRITE(20,*)' Rp  Trial number    a   b   c        V  Nind Icod'
+      WRITE(20,*)
       ENDIF
 C
 C     READ hkl Miller indices in ort.hkl
@@ -4447,18 +4447,18 @@ C
       NTRIEDB=0.
       IF(IFIN.EQ.1)THEN
       CELPRE(1)=CELPRE(1)+SPAR
-	PRINT *,'  a = ',CELPRE(1)
+      PRINT *,'  a = ',CELPRE(1)
       IF(CELPRE(1).GT.PMA(1))GO TO 1416
-	IFIN=0
+      IFIN=0
       NTRIED=NTRIED+1.
       ENDIF
       IF(IFIN2.EQ.1)THEN
       CELPRE(2)=CELPRE(2)+SPAR
-	IFIN2=0
+      IFIN2=0
       ENDIF
-	IF(CELPRE(2).GT.PMA(2))THEN
+      IF(CELPRE(2).GT.PMA(2))THEN
       CELPRE(2)=PMI(2)-SPAR
-	IFIN=1
+      IFIN=1
       GO TO 1402
       ENDIF
       NTRIED=NTRIED+1.
@@ -4484,10 +4484,10 @@ C
       CALL DCELL(CELPRE,AL,V1)
       IF(CELPRE(1).GT.PMA(1).AND.NTRIEDB.EQ.0.)GO TO 1416
       IF(NTRIEDB.NE.0.)GO TO 1406
-	IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
-	NTRIED=NTRIED-1.
-	GO TO 1402
-	ENDIF
+      IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
+      NTRIED=NTRIED-1.
+      GO TO 1402
+      ENDIF
 C
 1406  CALL CALCUL1(DIFF,DIFF2)
       IF(NMX.GT.NDAT10)THEN
@@ -4516,22 +4516,22 @@ C
       RMAX2=DIFF2
       A=CELPRE(1)
       B=CELPRE(2)
-	C=CELPRE(3)
-	V2=V1
-	IF(DIFF.LT.RMIN)THEN
-	RMIN=DIFF
-	BPAR(1)=A
-	BPAR(2)=B
+      C=CELPRE(3)
+      V2=V1
+      IF(DIFF.LT.RMIN)THEN
+      RMIN=DIFF
+      BPAR(1)=A
+      BPAR(2)=B
       BPAR(3)=C
-	V3=V1
-	ENDIF
+      V3=V1
+      ENDIF
 C
 C... "Refine" that cell (by Monte Carlo too...)
 C
       PSTARTB(1)=CELPRE(1)
       PSTARTB(2)=CELPRE(2)
       PSTARTB(3)=CELPRE(3)
-	ENDIF
+      ENDIF
       IF(NTRIEDB.LE.NCYCLES)GO TO 1403
       NTRIEDB=0.
       IF(RMAX.GE.RMAX0(4))GO TO 1417
@@ -4570,9 +4570,9 @@ C
 C
 C... Check for supercell
 C
-	CELPRE(1)=A
-	CELPRE(2)=B
-	CELPRE(3)=C
+      CELPRE(1)=A
+      CELPRE(2)=B
+      CELPRE(3)=C
       DO 1440 I=1,3
       DO 1440 J=1,3
 1440  AL(I,J)=0.0
@@ -4580,7 +4580,7 @@ C
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       KM(IGC)=LLHKL
       KM2(IGC)=LHKL
-	IFI(IGC)=IFILE
+      IFI(IGC)=IFILE
       NSOL(IGC)=1
       VGC(IGC)=V1
       RP(IGC)=RMAX
@@ -4601,15 +4601,15 @@ C
 C
 C... Check for interesting result
 C
-	IF(RP(IGC).LT.RMI)THEN
+      IF(RP(IGC).LT.RMI)THEN
       WRITE(*,1415)RMAX,A,B,C,V2,IPEN
       WRITE(20,*)
       WRITE(20,*)'====================================================
      1==========================='
       WRITE(20,*)
-	WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
       WRITE(*,*)
-	WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
 C
 C... Refine that cell
 C
@@ -4626,9 +4626,9 @@ C
       AFI(6)=0
       AFI(7)=0
       AFI(8)=0
-	CELPRE(1)=A
-	CELPRE(2)=B
-	CELPRE(3)=C
+      CELPRE(1)=A
+      CELPRE(2)=B
+      CELPRE(3)=C
       DO 1410 I=1,3
       DO 1410 J=1,3
 1410  AL(I,J)=0.0
@@ -4636,19 +4636,19 @@ C
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       CALL CELREF(INDIC,BB,AFI,LHKL,TH3,IHKL,DDT,DDQ)
       IF(NDAT.GE.20)THEN
-	CNCALC(IGC)=NCALC
+      CNCALC(IGC)=NCALC
       FM20(IGC)=QO(20)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=20./(CNCALC(IGC)*DDT)
       WRITE(20,7000)FM20(IGC)
       WRITE(20,7001)FF20(IGC),DDT,NCALC
-	WRITE(20,*)
+      WRITE(20,*)
       PRINT 7000,FM20(IGC)
       PRINT 7001,FF20(IGC),DDT,NCALC
-	PRINT *
+      PRINT *
       ENDIF
       IREF=1
-	GO TO 5000
-	ENDIF
+      GO TO 5000
+      ENDIF
 C
 C Test if cell already found
 C
@@ -4716,10 +4716,10 @@ C
       IF(RMIN.EQ.RMAX)GO TO 1498
       IF(IVERB.EQ.1)THEN
       WRITE(20,*)
-	WRITE(20,*)'Best result : a = ',BPAR(1),' Rp = ',RMIN
-	WRITE(20,*)'Best result : b = ',BPAR(2)
-	WRITE(20,*)'Best result : c = ',BPAR(3),'V = ',V3
-	WRITE(20,*)
+      WRITE(20,*)'Best result : a = ',BPAR(1),' Rp = ',RMIN
+      WRITE(20,*)'Best result : b = ',BPAR(2)
+      WRITE(20,*)'Best result : c = ',BPAR(3),'V = ',V3
+      WRITE(20,*)
       CALL DATN(DATENOW,TIMENOW)
       ENDIF
       RMIN=RMAX
@@ -4732,7 +4732,7 @@ C    Monoclinic case - would be too long in grid search, but...
 C
 C
       RPSMALL=1.
-	PRINT *,
+      PRINT *,
      1'Monoclinic:   Rp     a       b       c       bet     V     Nind'
 *------------------------------------------------------------------------- 
 *     Initialisation
@@ -4742,18 +4742,18 @@ C      CALL ESP_INIT(ISEED)
 *-------------------------------------------------------------------------
       IFILE=5
       RMAX=RMAXREF
-	RMIN=RMAX
+      RMIN=RMAX
       NTRIED=0.
       NCYCLES=2000.
       CY=NCYCLES*1.1
       CELPRE(4)=90.
       CELPRE(6)=90.
       IF(IVERB.EQ.1)THEN
-	WRITE(20,*)
+      WRITE(20,*)
       WRITE(20,*)'====================================================
      1==========================='
-	WRITE(20,*)'Grid search :'
-	WRITE(20,*)'   Results in monoclinic :'
+      WRITE(20,*)'Grid search :'
+      WRITE(20,*)'   Results in monoclinic :'
       WRITE(20,*)'====================================================
      1==========================='
       ENDIF
@@ -4773,13 +4773,13 @@ C
       VMIN=8.
       VMAX=PMA(1)*PMA(2)*PMA(3)
       IF(VMAX.GT.2000.)VMAX=2000.
-	IF(IVERB.EQ.1)
+      IF(IVERB.EQ.1)
      1WRITE(20,*)' Max (a,b,c), V ',PMA(1),PMA(2),PMA(3),VMAX
       ENDIF
 C
       IF(IVERB.EQ.1)THEN
-	WRITE(20,*)' Rp  Trial number    a   b   c     bet  V  Nind Icod'
-	WRITE(20,*)
+      WRITE(20,*)' Rp  Trial number    a   b   c     bet  V  Nind Icod'
+      WRITE(20,*)
       ENDIF
 C
 C     READ hkl Miller indices in mon.hkl
@@ -4810,18 +4810,18 @@ C
       NTRIEDB=0.
       IF(IFIN1.EQ.1)THEN
       CELPRE(1)=CELPRE(1)+SPAR
-	PRINT *,'  a = ',CELPRE(1)
+      PRINT *,'  a = ',CELPRE(1)
       IF(CELPRE(1).GT.PMA(1))GO TO 1516
-	IFIN1=0
+      IFIN1=0
       NTRIED=NTRIED+1.
       ENDIF
       IF(IFIN2.EQ.1)THEN
       CELPRE(2)=CELPRE(2)+SPAR
-	IFIN2=0
+      IFIN2=0
       ENDIF
-	IF(CELPRE(2).GT.PMA(2))THEN
+      IF(CELPRE(2).GT.PMA(2))THEN
       CELPRE(2)=PMI(2)-SPAR
-	IFIN1=1
+      IFIN1=1
       GO TO 1502
       ENDIF
       NTRIED=NTRIED+1.
@@ -4863,10 +4863,10 @@ C
       CALL DCELL(CELPRE,AL,V1)
       IF(CELPRE(1).GT.PMA(1).AND.NTRIEDB.EQ.0.)GO TO 1516
       IF(NTRIEDB.NE.0.)GO TO 1506
-	IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
-	NTRIED=NTRIED-1.
-	GO TO 1502
-	ENDIF
+      IF(V1.GT.VMAX.OR.V1.LT.VMIN) THEN
+      NTRIED=NTRIED-1.
+      GO TO 1502
+      ENDIF
 C
 1506  CALL CALCUL1(DIFF,DIFF2)
       IF(NMX.GT.NDAT10)THEN
@@ -4896,17 +4896,17 @@ C
       RMAX2=DIFF2
       A=CELPRE(1)
       B=CELPRE(2)
-	C=CELPRE(3)
-	BET=CELPRE(5)
-	V2=V1
-	IF(DIFF.LT.RMIN)THEN
-	RMIN=DIFF
-	BPAR(1)=A
-	BPAR(2)=B
+      C=CELPRE(3)
+      BET=CELPRE(5)
+      V2=V1
+      IF(DIFF.LT.RMIN)THEN
+      RMIN=DIFF
+      BPAR(1)=A
+      BPAR(2)=B
       BPAR(3)=C
       BPAR(5)=BET
-	V3=V1
-	ENDIF
+      V3=V1
+      ENDIF
 C
 C... "Refine" that cell (by Monte Carlo too...)
 C
@@ -4914,7 +4914,7 @@ C
       PSTARTB(2)=CELPRE(2)
       PSTARTB(3)=CELPRE(3)
       PSTARTB(5)=CELPRE(5)
-	ENDIF
+      ENDIF
       IF(NTRIEDB.LE.NCYCLES)GO TO 1503
       NTRIEDB=0.
       IF(RMAX.GE.RMAX0(5))GO TO 1517
@@ -4953,10 +4953,10 @@ C
 C
 C... Check for supercell
 C
-	CELPRE(1)=A
-	CELPRE(2)=B
-	CELPRE(3)=C
-	CELPRE(5)=BET
+      CELPRE(1)=A
+      CELPRE(2)=B
+      CELPRE(3)=C
+      CELPRE(5)=BET
       DO 1540 I=1,3
       DO 1540 J=1,3
 1540  AL(I,J)=0.0
@@ -4964,7 +4964,7 @@ C
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       KM(IGC)=LLHKL
       KM2(IGC)=LHKL
-	IFI(IGC)=IFILE
+      IFI(IGC)=IFILE
       NSOL(IGC)=1
       VGC(IGC)=V1
       RP(IGC)=RMAX
@@ -4983,15 +4983,15 @@ C
 C
 C... Check for interesting result
 C
-	IF(RP(IGC).LT.RMI)THEN
+      IF(RP(IGC).LT.RMI)THEN
       WRITE(*,1515)RMAX,A,B,C,BET,V2,IPEN
       WRITE(20,*)
       WRITE(20,*)'====================================================
      1==========================='
       WRITE(20,*)
-	WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(20,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
       WRITE(*,*)
-	WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
+      WRITE(*,*)' YOU HAVE FOUND AN INTERESTING RESULT : Rp < Rmin!'
 C
 C... Refine that cell
 C
@@ -5008,9 +5008,9 @@ C
       AFI(6)=0
       AFI(7)=1
       AFI(8)=0
-	CELPRE(1)=A
-	CELPRE(2)=B
-	CELPRE(3)=C
+      CELPRE(1)=A
+      CELPRE(2)=B
+      CELPRE(3)=C
       CELPRE(5)=BET
       DO 1510 I=1,3
       DO 1510 J=1,3
@@ -5019,19 +5019,19 @@ C
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,IGC)
       CALL CELREF(INDIC,BB,AFI,LHKL,TH3,IHKL,DDT,DDQ)
       IF(NDAT.GE.20)THEN
-	CNCALC(IGC)=NCALC
+      CNCALC(IGC)=NCALC
       FM20(IGC)=QO(20)/(2.*CNCALC(IGC)*DDQ)
       FF20(IGC)=20./(CNCALC(IGC)*DDT)
       WRITE(20,7000)FM20(IGC)
       WRITE(20,7001)FF20(IGC),DDT,NCALC
-	WRITE(20,*)
+      WRITE(20,*)
       PRINT 7000,FM20(IGC)
       PRINT 7001,FF20(IGC),DDT,NCALC
-	PRINT *
+      PRINT *
       ENDIF
       IREF=1
-	GO TO 5000
-	ENDIF
+      GO TO 5000
+      ENDIF
 C
 C Test if cell already found
 C
@@ -5079,7 +5079,7 @@ C
      1WRITE(20,515)RMAX,NTRIED,A,B,C,BET,V2,IPEN,ICODE
       IF(ISEE.EQ.1)WRITE(*,1515)RMAX,A,B,C,BET,V2,IPEN
 1519  CONTINUE
-	ELSE
+      ELSE
       IF(IVERB.EQ.1)
      1WRITE(20,515)RMAX,NTRIED,A,B,C,BET,V2,IPEN,ICODE
       IF(ISEE.EQ.1)WRITE(*,1515)RMAX,A,B,C,BET,V2,IPEN
@@ -5106,11 +5106,11 @@ C
       IF(RMIN.EQ.RMAX)GO TO 1598
       IF(IVERB.EQ.1)THEN
       WRITE(20,*)
-	WRITE(20,*)'Best result : a =   ',BPAR(1),'  Rp = ',RMIN
-	WRITE(20,*)'Best result : b =   ',BPAR(2)
-	WRITE(20,*)'Best result : c =   ',BPAR(3)
-	WRITE(20,*)'Best result : bet = ',BPAR(5),'  V = ',V3
-	WRITE(20,*)
+      WRITE(20,*)'Best result : a =   ',BPAR(1),'  Rp = ',RMIN
+      WRITE(20,*)'Best result : b =   ',BPAR(2)
+      WRITE(20,*)'Best result : c =   ',BPAR(3)
+      WRITE(20,*)'Best result : bet = ',BPAR(5),'  V = ',V3
+      WRITE(20,*)
       CALL DATN(DATENOW,TIMENOW)
       ENDIF
       RMIN=RMAX
@@ -5430,7 +5430,7 @@ C
       DO 41 I=1,NHKL0
 41    READ(35,*)(IHH(KK,I),KK=1,3)
       CLOSE(35)
-	GO TO 50
+      GO TO 50
 32    TEMPO='hex.hkl'
       CALL OPEN_READ1(35,TEMPO)
       READ(35,*)NHKL0
@@ -5439,7 +5439,7 @@ C
       DO 42 I=1,NHKL0
 42    READ(35,*)(IHH(KK,I),KK=1,3)
       CLOSE(35)
-	GO TO 50
+      GO TO 50
 33    TEMPO='tet.hkl'
       CALL OPEN_READ1(35,TEMPO)
       READ(35,*)NHKL0
@@ -5448,7 +5448,7 @@ C
       DO 43 I=1,NHKL0
 43    READ(35,*)(IHH(KK,I),KK=1,3)
       CLOSE(35)
-	GO TO 50
+      GO TO 50
 34    TEMPO='ort.hkl'
       CALL OPEN_READ1(35,TEMPO)
       READ(35,*)NHKL0
@@ -5457,7 +5457,7 @@ C
       DO 44 I=1,NHKL0
 44    READ(35,*)(IHH(KK,I),KK=1,3)
       CLOSE(35)
-	GO TO 50
+      GO TO 50
 35    TEMPO='mon.hkl'
       CALL OPEN_READ1(35,TEMPO)
       READ(35,*)NHKL0
@@ -5466,7 +5466,7 @@ C
       DO 45 I=1,NHKL0
 45    READ(35,*)(IHH(KK,I),KK=1,3)
       CLOSE(35)
-	GO TO 50
+      GO TO 50
 36    TEMPO='tri.hkl'
       CALL OPEN_READ1(35,TEMPO)
       READ(35,*)NHKL0
@@ -5475,7 +5475,7 @@ C
       DO 46 I=1,NHKL0
 46    READ(35,*)(IHH(KK,I),KK=1,3)
       CLOSE(35)
-	GO TO 50
+      GO TO 50
 37    TEMPO='rho.hkl'
       CALL OPEN_READ1(35,TEMPO)
       READ(35,*)NHKL0
@@ -5528,9 +5528,9 @@ C      IF(IREF.EQ.1)GO TO 5900
       IF(IFILE.EQ.7)AFI(6)=0.
       IF(IFILE.EQ.7)AFI(7)=0.
       IF(IFILE.EQ.7)AFI(8)=0.
-	CELPRE(1)=BB(3)
-	CELPRE(2)=BB(4)
-	CELPRE(3)=BB(5)
+      CELPRE(1)=BB(3)
+      CELPRE(2)=BB(4)
+      CELPRE(3)=BB(5)
       CELPRE(4)=BB(6)
       CELPRE(5)=BB(7)
       CELPRE(6)=BB(8)
@@ -5542,15 +5542,15 @@ C      IF(IREF.EQ.1)GO TO 5900
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,J)
       CALL CELREF(INDIC,BB,AFI,LHKL,TH3,IHKL,DDT,DDQ)
       IF(NDAT.GE.20)THEN
-	CNCALC(IGC)=NCALC
+      CNCALC(IGC)=NCALC
       FM20(J)=QO(20)/(2.*CNCALC(J)*DDQ)
       FF20(J)=20./(CNCALC(J)*DDT)
       WRITE(20,7000)FM20(J)
       WRITE(20,7001)FF20(J),DDT,NCALC
-	WRITE(20,*)
+      WRITE(20,*)
       PRINT 7000,FM20(J)
       PRINT 7001,FF20(J),DDT,NCALC
-	PRINT *
+      PRINT *
       ENDIF
 5900  CONTINUE
 C
@@ -5693,7 +5693,7 @@ C
 *  Sum at each point
 *
       DO 1810 K=1,NHKL
-	SOMEGA(K)=0.
+      SOMEGA(K)=0.
 1810  FOBS(K)=0.
       DO 1811 K=1,N2
       YCALC(K)=0.
@@ -5708,7 +5708,7 @@ C
       NHB(K)=J
       DELT=DELTAP*DELTAP
       OMEG=EXP(-DELT/BBB(J))/HW(J)
-	SOMEGA(J)=SOMEGA(J)+OMEG
+      SOMEGA(J)=SOMEGA(J)+OMEG
       DUMP(J)=FCAL(J)*OMEG
       YCALC(K)=YCALC(K)+DUMP(J)
 1812  CONTINUE
@@ -5720,9 +5720,9 @@ C
 1813  CONTINUE
 1811  CONTINUE
       DO 1815 K=1,NHKL
-	IF(SOMEGA(K).EQ.0.)GO TO 1816
+      IF(SOMEGA(K).EQ.0.)GO TO 1816
       FOBS(K)=FOBS(K)/SOMEGA(K)
-	GO TO 1815
+      GO TO 1815
 1816  FOBS(K)=0.
 1815  CONTINUE
       DO 61 J=1,NHKL
@@ -5734,7 +5734,7 @@ C
       DO 1850 KITER=1,2
 *  Sum at each point
       DO 1817 K=1,NHKL
-	SOMEGA(K)=0.
+      SOMEGA(K)=0.
 1817  FOBS(K)=0.
       DO 1818 K=1,N2
       YCALC(K)=0.
@@ -5745,7 +5745,7 @@ C
       IF(ABS(DELTAP).GT.HW4(J))GO TO 1819
       DELT=DELTAP*DELTAP
       OMEG=EXP(-DELT/BBB(J))/HW(J)
-	SOMEGA(J)=SOMEGA(J)+OMEG
+      SOMEGA(J)=SOMEGA(J)+OMEG
       DUMP(J)=FCAL(J)*OMEG
       YCALC(K)=YCALC(K)+DUMP(J)
 1819  CONTINUE
@@ -5757,9 +5757,9 @@ C
 1820  CONTINUE
 1818  CONTINUE
       DO 1822 K=1,NHKL
-	IF(SOMEGA(K).EQ.0.)GO TO 1823
+      IF(SOMEGA(K).EQ.0.)GO TO 1823
       FOBS(K)=FOBS(K)/SOMEGA(K)
-	GO TO 1822
+      GO TO 1822
 1823  FOBS(K)=0.
 1822  CONTINUE
       DO 62 J=1,NHKL
@@ -5769,7 +5769,7 @@ C
 C
 C
 C
-	DIFF=0.
+      DIFF=0.
 *  Sum at each point
       DO 1824 K=1,N2
       YCALC(K)=0.
@@ -5787,12 +5787,12 @@ C
       SUM_Y=0.
       DO 1826 K=1,N2
       DIFF=DIFF+ABS(YOBS(K)-YCALC(K))
-	SUM_Y=SUM_Y+YOBS(K)
+      SUM_Y=SUM_Y+YOBS(K)
 1826  CONTINUE
       DIFF=DIFF/SUM_Y
-	WRITE(20,*)
-	WRITE(20,*)' Final Rp on the .prf = ',DIFF
-	WRITE(20,*)
+      WRITE(20,*)
+      WRITE(20,*)' Final Rp on the .prf = ',DIFF
+      WRITE(20,*)
 C
 C     Make the .prf
 C
@@ -5885,7 +5885,7 @@ C
       DO 1741 I=1,NHKL0
 1741  READ(35,*)(IHH(KK,I),KK=1,3)
       CLOSE(35)
-	GO TO 1750
+      GO TO 1750
 1732  TEMPO='hex.hkl'
       CALL OPEN_READ1(35,TEMPO)
       READ(35,*)NHKL0
@@ -5894,7 +5894,7 @@ C
       DO 1742 I=1,NHKL0
 1742  READ(35,*)(IHH(KK,I),KK=1,3)
       CLOSE(35)
-	GO TO 1750
+      GO TO 1750
 1733  TEMPO='tet.hkl'
       CALL OPEN_READ1(35,TEMPO)
       READ(35,*)NHKL0
@@ -5903,7 +5903,7 @@ C
       DO 1743 I=1,NHKL0
 1743  READ(35,*)(IHH(KK,I),KK=1,3)
       CLOSE(35)
-	GO TO 1750
+      GO TO 1750
 1734  TEMPO='ort.hkl'
       CALL OPEN_READ1(35,TEMPO)
       READ(35,*)NHKL0
@@ -5912,7 +5912,7 @@ C
       DO 1744 I=1,NHKL0
 1744  READ(35,*)(IHH(KK,I),KK=1,3)
       CLOSE(35)
-	GO TO 1750
+      GO TO 1750
 1735  TEMPO='mon.hkl'
       CALL OPEN_READ1(35,TEMPO)
       READ(35,*)NHKL0
@@ -5921,7 +5921,7 @@ C
       DO 1745 I=1,NHKL0
 1745  READ(35,*)(IHH(KK,I),KK=1,3)
       CLOSE(35)
-	GO TO 1750
+      GO TO 1750
 1736  TEMPO='tri.hkl'
       CALL OPEN_READ1(35,TEMPO)
       READ(35,*)NHKL0
@@ -5930,7 +5930,7 @@ C
       DO 1746 I=1,NHKL0
 1746  READ(35,*)(IHH(KK,I),KK=1,3)
       CLOSE(35)
-	GO TO 1750
+      GO TO 1750
 1737  TEMPO='rho.hkl'
       CALL OPEN_READ1(35,TEMPO)
       READ(35,*)NHKL0
@@ -5981,9 +5981,9 @@ C
       IF(IFILE.EQ.7)AFI(6)=0.
       IF(IFILE.EQ.7)AFI(7)=0.
       IF(IFILE.EQ.7)AFI(8)=0.
-	CELPRE(1)=BB(3)
-	CELPRE(2)=BB(4)
-	CELPRE(3)=BB(5)
+      CELPRE(1)=BB(3)
+      CELPRE(2)=BB(4)
+      CELPRE(3)=BB(5)
       CELPRE(4)=BB(6)
       CELPRE(5)=BB(7)
       CELPRE(6)=BB(8)
@@ -5995,15 +5995,15 @@ C
       CALL CALCUL2(DIFF,IHKL,TH3,NCALC,J)
       CALL CELREF(INDIC,BB,AFI,LHKL,TH3,IHKL,DDT,DDQ)
       IF(NDAT.GE.20)THEN
-	CNCALC(J)=NCALC
+      CNCALC(J)=NCALC
       FM20(J)=QO(20)/(2.*CNCALC(J)*DDQ)
       FF20(J)=20./(CNCALC(J)*DDT)
       WRITE(20,7000)FM20(J)
       WRITE(20,7001)FF20(J),DDT,NCALC
-	WRITE(20,*)
+      WRITE(20,*)
       PRINT 7000,FM20(J)
       PRINT 7001,FF20(J),DDT,NCALC
-	PRINT *
+      PRINT *
       ENDIF
 5901  CONTINUE
 C
@@ -6042,10 +6042,10 @@ C
       WRITE(20,*)'====================================================
      1==========================='
       WRITE(20,*)'CELLS with small Rp2 + largest number of peak indexed'
-	WRITE(20,*)'====================================================
+      WRITE(20,*)'====================================================
      1==========================='
       WRITE(20,*)'Rp2 is on peak indexed only, and width divided by 2,'
-	WRITE(20,*)'while Rp is on all peaks, and large width.'
+      WRITE(20,*)'while Rp is on all peaks, and large width.'
       WRITE(20,*)
       CALL SORT2(IGC,RP2,LL)
       IMEM=IMEM+1
@@ -6070,7 +6070,7 @@ C
       WRITE(20,*)'====================================================
      1==========================='
       WRITE(20,*)'Double cells with largest number of peak indexed'
-	WRITE(20,*)'====================================================
+      WRITE(20,*)'====================================================
      1==========================='
       WRITE(20,*)
       WRITE(20,*)'WARNING - WARNING - WARNING - WARNING - WARNING'
@@ -6280,40 +6280,40 @@ C1615  FORMAT(I3,F10.0,1X,F5.3,3F8.4,3F7.2,F9.1,I3)
      -        1x,'Using generic filename : ',A)
       GO TO 3600
 3500  WRITE(20,*)'  Error reading the first line : TEXT'
-	WRITE (BUFFER,*)'  Error reading the first line : TEXT'
-	CALL PROGRESSVIEW (BUFFER)
+      WRITE (BUFFER,*)'  Error reading the first line : TEXT'
+      CALL PROGRESSVIEW (BUFFER)
       GO TO 3600
 3501  WRITE(20,*)'  Error reading lambda, etc, line 2'
-	WRITE (BUFFER,*)'  Error reading lambda, etc, line 2'
-	CALL PROGRESSVIEW (BUFFER)
+      WRITE (BUFFER,*)'  Error reading lambda, etc, line 2'
+      CALL PROGRESSVIEW (BUFFER)
       GO TO 3600
 3502  WRITE(20,*)'  Error reading symmetry code, line 3'
-	WRITE (BUFFER,*)'  Error reading symmetry code, line 3'
-	CALL PROGRESSVIEW (BUFFER)
+      WRITE (BUFFER,*)'  Error reading symmetry code, line 3'
+      CALL PROGRESSVIEW (BUFFER)
       GO TO 3600
 3503  WRITE(20,*)'  Error reading U, V, W, step'
-	WRITE (BUFFER,*)'  Error reading U, V, W, Step'
-	CALL PROGRESSVIEW (BUFFER)
+      WRITE (BUFFER,*)'  Error reading U, V, W, Step'
+      CALL PROGRESSVIEW (BUFFER)
       GO TO 3600
 3504  WRITE(20,*)'  Error reading Pmin, Pmax, Vmin'
-	WRITE (BUFFER,*)'  Error reading Pmin, Pmax, Vmin'
-	CALL PROGRESSVIEW (BUFFER)
+      WRITE (BUFFER,*)'  Error reading Pmin, Pmax, Vmin'
+      CALL PROGRESSVIEW (BUFFER)
       GO TO 3600
 3505  WRITE(20,*)'  Error reading grid steps'
-	WRITE (BUFFER,*)'  Error reading grid steps'
-	CALL PROGRESSVIEW (BUFFER)
+      WRITE (BUFFER,*)'  Error reading grid steps'
+      CALL PROGRESSVIEW (BUFFER)
       GO TO 3600
 3506  WRITE(20,*)'  Error reading NTIMELIM'
-	WRITE (BUFFER,*)'  Error reading NTIMELIM'
-	CALL PROGRESSVIEW (BUFFER)
+      WRITE (BUFFER,*)'  Error reading NTIMELIM'
+      CALL PROGRESSVIEW (BUFFER)
       GO TO 3600
 3507  WRITE(20,*)'  Error reading nstart, rmax, test'
-	WRITE (BUFFER,*)'  Error reading nstart, rmax, test'
-	CALL PROGRESSVIEW (BUFFER)
+      WRITE (BUFFER,*)'  Error reading nstart, rmax, test'
+      CALL PROGRESSVIEW (BUFFER)
       GO TO 3600
 3508  WRITE(20,*)'  Error reading data angle > 180'
-	WRITE (BUFFER,*)'  Error reading data angle > 180'
-	CALL PROGRESSVIEW (BUFFER)
+      WRITE (BUFFER,*)'  Error reading data angle > 180'
+      CALL PROGRESSVIEW (BUFFER)
 3600  CONTINUE
       CALL DATN(DATENOW,TIMENOW)
       CALL CPU_TIME(time_end)
@@ -6327,8 +6327,8 @@ C1615  FORMAT(I3,F10.0,1X,F5.3,3F8.4,3F7.2,F9.1,I3)
       STOP
       END
 *-----------------------------------------------------------------------
-	SUBROUTINE PROGRESSVIEW(BUFFER)
-	CHARACTER*79 BUFFER
+      SUBROUTINE PROGRESSVIEW(BUFFER)
+      CHARACTER*79 BUFFER
       WRITE(*,1)BUFFER
 1     FORMAT(A79)
       RETURN
@@ -6356,7 +6356,7 @@ C
       CHARACTER*8 DA
       CHARACTER*10 TIME
       CHARACTER*5 ZONE
-	CHARACTER*2 YEAR
+      CHARACTER*2 YEAR
       INTEGER*4 DT_VALUES(8)    ! Return values from DATE_AND_TIME
       CHARACTER*3 MONTHS(12)    ! Month names
       DATA MONTHS /'Jan','Feb','Mar','Apr','May','Jun',
@@ -6376,14 +6376,14 @@ C
       WRITE(20,*)
 10    FORMAT(1X,I2,'-',A3,'-',I4,5X,I2,' hour ',I2,' min ',I2,
      -' Sec ')
-	IF(DT_VALUES(1).EQ.2006)YEAR='06'
-	IF(DT_VALUES(1).EQ.2007)YEAR='07'
-	IF(DT_VALUES(1).EQ.2008)YEAR='08'
-	IF(DT_VALUES(1).EQ.2009)YEAR='09'
-	IF(DT_VALUES(1).EQ.2010)YEAR='10'
-	WRITE(DATENOW,'(I2,A3,A2)')
+      IF(DT_VALUES(1).EQ.2006)YEAR='06'
+      IF(DT_VALUES(1).EQ.2007)YEAR='07'
+      IF(DT_VALUES(1).EQ.2008)YEAR='08'
+      IF(DT_VALUES(1).EQ.2009)YEAR='09'
+      IF(DT_VALUES(1).EQ.2010)YEAR='10'
+      WRITE(DATENOW,'(I2,A3,A2)')
      1DT_VALUES(3),MONTHS(DT_VALUES(2)),YEAR
-	WRITE(TIMENOW,'(I2,A,I2,A,I2)')
+      WRITE(TIMENOW,'(I2,A,I2,A,I2)')
      1DT_VALUES(5),':',DT_VALUES(6),':',DT_VALUES(7)
 C
 C  End of compiler specific subroutine
@@ -6816,7 +6816,7 @@ C
       INTEGER H(200),K(200),L(200)
       REAL*8 ICLE(3)
       DIMENSION THETA(10000),SIG(8),DUM(3),JHKL(3,10000)
-	DIMENSION BBB(8),AFIN(8)
+      DIMENSION BBB(8),AFIN(8)
       EXTERNAL CALC
       COMMON/TROC/IWR,IRID
       COMMON/TRUC/QQ(200,10),BB(10),B(10),H,K,L,NPAF,AFI(10),NR,
@@ -7054,7 +7054,7 @@ C
 *
       INTEGER H(200),K(200),L(200)
       DIMENSION THETA(10000),SIG(8),DUM(3),JHKL(3,10000)
-	DIMENSION BBB(8),AFIN(8)
+      DIMENSION BBB(8),AFIN(8)
       EXTERNAL CALC
       COMMON/TROC/IWR,IRID
       COMMON/TRUC/QQ(200,10),BB(10),B(10),H,K,L,NPAF,AFI(10),NR,
@@ -7546,7 +7546,7 @@ C  included (if CRI =1)...
 C
       IF(CRI(J).EQ.1) THEN
       PERC(J)=1.-DE(L)/W2(J)
-	LHKL=LHKL+1
+      LHKL=LHKL+1
       CR(L)=1.
       ENDIF
 113   CONTINUE
@@ -7568,7 +7568,7 @@ C
       PARAMETER(N_HKL=10000,N_DAT=100)   
 C
       DIMENSION THETA(N_HKL),PERC(N_HKL),IHKL(3,N_HKL),DE(N_HKL)
-	DIMENSION TH3(N_HKL),JHKL(3,N_HKL),CR(N_HKL),QC(N_HKL)
+      DIMENSION TH3(N_HKL),JHKL(3,N_HKL),CR(N_HKL),QC(N_HKL)
 C
       COMMON/CAL/NHKL0,LHKL,NDAT,DMIN,SLABDA2,IHH(3,N_HKL),AL(3,3),PI,
      1CRI(N_HKL),DIFP(N_HKL),DIFM(N_HKL),TH2(N_HKL),FOBS(N_HKL),SUM_F,
@@ -7587,7 +7587,7 @@ C
 107   X=AL(J,K)*IHH(J,I)*IHH(K,I)+X
       IF(X.GT.DMIN)GO TO 109
       JH=JH+1
-	DO 108 J=1,3
+      DO 108 J=1,3
 108   JHKL(J,JH)=IHH(J,I)
 C     X IS 1/D(hkl)**2 FOR REFLECTION IHH
 C
@@ -7756,7 +7756,7 @@ C
       SUBROUTINE SUPCEL(N,IHKL,CEL,L,VGC,JS)
       PARAMETER(N_HKL=10000)
       DIMENSION CEL(6,N_HKL),VGC(N_HKL),IHKL(3,N_HKL)
-	DIMENSION ID2(3),ID3(3),ID4(3),ID5(3),ID6(3),IHMAX(3)
+      DIMENSION ID2(3),ID3(3),ID4(3),ID5(3),ID6(3),IHMAX(3)
 C
 C  Sum on the h, k, l
       DO 10 J=1,3
