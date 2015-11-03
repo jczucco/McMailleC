@@ -6814,7 +6814,8 @@ C.....*****************************************************************
 C
 C
       INTEGER H(200),K(200),L(200)
-      REAL*8 ICLE(3)
+!      REAL*8 ICLE(3)
+      CHARACTER*8 ICLE(3)
       DIMENSION THETA(10000),SIG(8),DUM(3),JHKL(3,10000)
       DIMENSION BBB(8),AFIN(8)
       EXTERNAL CALC
