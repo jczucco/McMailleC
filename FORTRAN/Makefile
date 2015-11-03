@@ -1,0 +1,2 @@
+all:
+	gfortran McMaille.for
