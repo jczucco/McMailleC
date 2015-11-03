@@ -7674,8 +7674,16 @@ C
 !      USE DFLIB   ! disabled library by Zucco
       LOGICAL(4) PRESSED / .FALSE. /
       LOGICAL(4) PRESSEDK
-      CHARACTER(1) KEY
-      PRESSED = PEEKCHARQQ ( )
+!      CHARACTER(1) KEY
+!     PRESSED = PEEKCHARQQ ( ) - created an external C program to check if a key was pressed - kbhit.c
+!     https://stackoverflow.com/questions/17845931/calling-c-function-subroutine-in-fortran-code
+      INTERFACE
+        SUBROUTINE kbhit() BIND(C)
+          USE, INTRINSIC :: ISO_C_BINDING, ONLY: C_INT
+          IMPLICIT NONE
+          CHARACTER(1) :: KEY
+        END SUBROUTINE kbhit
+      END INTERFACE
       IF(PRESSED)THEN
       KEY = GETCHARQQ()
       IF(KEY.EQ.'K')PRESSEDK=.TRUE.
